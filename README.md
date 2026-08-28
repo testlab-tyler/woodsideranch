@@ -73,21 +73,20 @@ Online dues payment was scoped without a member login area. Showing an owner *th
 
 ## The site
 
-Static HTML in `site/`. No build step, no framework, no database — open
-`site/index.html` in a browser and it works.
+Static HTML in `site/`. No build step, no framework, no database.
 
-| Path | What it is |
+| Page | Content |
 |---|---|
-| `site/index.html` | Homepage |
-| `site/documents.html` | Document library |
-| `site/fire-safety.html` | Fire &amp; evacuation |
-| `site/assets/css/site.css` | The whole design system as CSS custom properties |
-| `site/assets/js/site.js` | ~40 lines: header frost on scroll, mobile menu |
-| `site/assets/img/` | Longhorn mark (SVG) and photography |
-| `design/SEED-SYSTEM.md` | The token reference the CSS implements |
-| `serve.mjs` | Local preview only — not deployed |
+| `index.html` | Hero, six tasks, dues (PayPal / Venmo / post), Caldera Ranch, fire, board |
+| `association.html` | Board of directors, all six standing committees with members and emails, annual events |
+| `documents.html` | CC&Rs for all six phases, annual meeting minutes 2013–2021, dues form |
+| `fire-safety.html` | Current fire activity, alerts, home hardening assessments |
+| `caldera-ranch.html` | The 716-unit development: status, timeline, city documents |
 
-### Run it locally
+Supporting files: `assets/css/site.css` (the whole design system), `assets/js/site.js`
+(~35 lines, mobile menu only), `assets/img/`, and `serve.mjs` for local preview.
+
+### Run it
 
 ```
 node serve.mjs
@@ -97,26 +96,34 @@ Then open http://localhost:8765
 
 ### Deploy
 
-Point Cloudflare Pages or Netlify at this repo with **build command: none** and
-**output directory: `site`**. Both are free at this scale and redeploy on push.
+Cloudflare Pages or Netlify, **build command: none**, **output directory: `site`**.
+
+### Content
+
+Everything on the site is real content pulled from woodsideranch.net — the board
+roster as of 31 May 2026, all six committees and their members, the $100 dues and
+the PayPal/Venmo links, the Caldera Ranch timeline, and the fire resources.
+
+Documents link to the PDFs already hosted on woodsideranch.net, so nothing had to
+be migrated for the site to work. All 18 were checked and serve correctly. If the
+old site is ever retired, copy `wp-content/uploads/` into `site/assets/docs/` and
+update the hrefs.
 
 ### Design system
 
-Built on the "Seed" system documented at
-[styles.refero.design](https://styles.refero.design/style/cd723d5a-e7ea-4e4c-a3bb-6cf56e05057a).
-Every token lives in `:root` in `site.css`. The hard rules — verified in the
-browser against the rendered page — are: no shadows, no gradients, no pure
-white, no heading heavier than 500, pills at 1000px radius.
+Built on "Seed" ([styles.refero.design](https://styles.refero.design/style/cd723d5a-e7ea-4e4c-a3bb-6cf56e05057a));
+tokens documented in `design/SEED-SYSTEM.md` and implemented in `:root`.
 
-The one deliberate deviation is body copy at weight 400 rather than 350. The
-system reserves 400–500 for body, so this stays in-system; it is set that way
-because the readership skews older.
+Verified against the rendered CSS: no shadows, no gradients, no pure white outside
+the print stylesheet, no heading above weight 500. Curves are 1000px on pills,
+16px on cards, 32px on hero and panels.
 
-### Before launch
+The glass is Snow White at 0.74 alpha with a 20–30px blur. That reads **6.7:1
+against Forest Depths even over pure black**, so hero legibility never depends on
+the photograph behind it.
 
-- Replace every `[BRACKETED]` value — phone numbers, board names, dues amount,
-  meeting dates. They are marked rather than guessed.
-- Swap the Unsplash placeholders for photographs of Woodside Ranch itself.
-  See `assets/photos/CREDITS.md`.
-- Wire "Pay dues" to a hosted portal and the architectural review link to a
-  form builder. Neither should be built into this site.
+### Still to do
+
+- Replace the stock hero photography with photographs of Woodside Ranch itself.
+- Post minutes for 2020 and 2022–2026, plus board minutes and treasurer's reports.
+  The documents page says plainly that they are missing rather than hiding the gap.

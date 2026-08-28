@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fire &amp; evacuation — Woodside Ranch Homeowners Association</title>
-<meta name="description" content="Wildfire preparation, evacuation routes, alert sign-up and home hardening for Woodside Ranch, on the wildland edge of Bend, Oregon.">
+<title>Fire safety — Woodside Ranch Homeowners Association</title>
+<meta name="description" content="Wildfire preparation for Woodside Ranch: current fire and burn activity, Deschutes County alerts, Watch Duty, and free home hardening assessments by trained volunteer assessors.">
 <link rel="icon" href="assets/img/longhorn.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,169 +15,150 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="alert-strip on-dark">
-  <div class="container alert-strip__inner">
-    <span class="mono">WRHA &middot; SE Bend, Oregon &middot; Est. 1974 &middot; 257 parcels</span>
-    <div class="row" style="gap: var(--s2); flex-wrap: wrap;">
-      <span class="badge">Current burn status: [OPEN / CLOSED]</span>
-      <a class="mono" href="tel:+1541XXXXXXX" style="text-decoration: none;">[541-XXX-XXXX]</a>
-    </div>
-  </div>
+<div class="announce">
+  <a href="#hardening">Free home hardening assessments by trained volunteer assessors
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
 </div>
 
-<div data-stuck-sentinel aria-hidden="true"></div>
-
-<header class="header on-dark">
+<header class="header">
   <div class="container header__inner">
     <a class="brand" href="index.html">
       <svg viewBox="0 0 480 140" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
       <span class="brand__name">Woodside Ranch</span>
     </a>
-
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       Menu
     </button>
-
     <nav class="nav" id="primary-nav" aria-label="Primary">
-      <a href="index.html">Home</a>
+      <a href="association.html">Association</a>
       <a href="documents.html">Documents</a>
       <a href="fire-safety.html" aria-current="page">Fire safety</a>
-      <a href="index.html#happening">What&rsquo;s happening</a>
+      <a href="caldera-ranch.html">Caldera Ranch</a>
       <a href="index.html#contact">Contact</a>
-      <a class="btn btn--lime btn--sm" href="index.html#dues">Pay dues</a>
+      <a class="btn btn--primary btn--sm" href="index.html#dues">Pay dues</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <section class="hero on-dark">
+  <section class="hero">
     <div class="hero__media">
-      <img src="assets/img/ridge-sunset.jpg" alt="" width="1100" height="733">
+      <img src="assets/img/ridge-sunset.jpg" alt="" width="1100" height="733" fetchpriority="high">
     </div>
     <div class="container hero__inner">
       <div class="glass-panel">
-        <p class="mono hero__eyebrow">Wildland&ndash;urban interface</p>
-        <h1 class="display">If you only read one page on this site, read this one.</h1>
-        <p class="lede hero__lede">Woodside Ranch borders the Deschutes National Forest. These are the three things to do before a fire, and the two ways out during one.</p>
+        <p class="mono sage-text">Fire safety</p>
+        <h1 class="display" style="margin-top: var(--s3);">Are you ready?</h1>
+        <p class="lede muted" style="margin-top: var(--s3); max-width: 30em;">Wildfire is a common threat to all residents of Woodside Ranch and to everyone in Central Oregon. The best way to combat this threat is to be prepared and be informed.</p>
         <div class="hero__actions">
-          <a class="btn btn--lime" href="#routes">Evacuation routes</a>
-          <a class="btn btn--ghost-dark" href="#alerts">Sign up for alerts</a>
+          <a class="btn btn--primary" href="#hardening">Request an assessment</a>
+          <a class="link-arrow" href="#alerts">Set up alerts
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section container" id="alerts">
+  <!-- ===================== CURRENT ACTIVITY ===================== -->
+  <section class="section container" id="burn">
     <div class="section-head">
-      <h2 class="h2">Before a fire</h2>
-      <p class="muted">Three things, none of which take an afternoon.</p>
+      <div class="stack" style="gap: var(--s2);">
+        <p class="mono sage-text">Current fire and burn activity</p>
+        <h2 class="h2">What is burning right now.</h2>
+      </div>
     </div>
 
-    <div class="tasks">
-      <a class="task" href="https://www.deschutes.org/911/page/sign-deschutes-alerts" rel="noopener">
-        <div class="task__top"><span class="mono task__code">FS&mdash;01</span></div>
-        <span class="sub">Sign up for Deschutes Alerts</span>
-        <p>The county&rsquo;s official emergency notification system. This is how an evacuation order reaches you.</p>
+    <div class="grid grid--2">
+      <a class="card card--tall" href="https://centraloregonfire.org/" rel="noopener">
+        <div class="card__top">
+          <span class="mono card__code">Official source</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </div>
+        <span class="sub" style="margin-top: var(--s1);">Central Oregon Fire Info</span>
+        <p>The official publishing source for comprehensive fire, health and air quality information in Central Oregon. Current and planned prescribed burns, wildfires, and text alert sign-up.</p>
       </a>
 
-      <a class="task" href="https://www.watchduty.org" rel="noopener">
-        <div class="task__top"><span class="mono task__code">FS&mdash;02</span></div>
-        <span class="sub">Install Watch Duty</span>
-        <p>Free, volunteer-run wildfire tracking. Faster than the news, and it covers Central Oregon well.</p>
-      </a>
-
-      <a class="task" href="#hardening">
-        <div class="task__top"><span class="mono task__code">FS&mdash;03</span></div>
-        <span class="sub">Book a home hardening assessment</span>
-        <p>A walk-around of your property with someone who knows what catches. Free to Woodside Ranch owners.</p>
+      <a class="card card--tall" href="https://www.watchduty.org/" rel="noopener">
+        <div class="card__top">
+          <span class="mono card__code">Free app</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </div>
+        <span class="sub" style="margin-top: var(--s1);">Watch Duty</span>
+        <p>iOS and Android app giving a graphic display of fire locations, size and accompanying evacuation zones, run by a volunteer organisation that consolidates reports from multiple sources.</p>
       </a>
     </div>
   </section>
 
-  <section class="container" id="routes">
-    <div class="panel-dark on-dark panel-split">
-      <div class="stack" style="gap: var(--s3);">
-        <p class="mono" style="color: var(--lime);">During a fire</p>
-        <h2 class="h1">Two ways out</h2>
-        <p class="muted" style="font-weight: 300; max-width: 30em;">Woodside Ranch has [NUMBER] exits onto Highway 97. If one is closed, take the other &mdash; do not wait to be told which.</p>
-        <ul class="stack" style="gap: var(--s2); margin-top: var(--s1);">
-          <li class="notice" style="border-top: 1px solid rgba(252,252,247,.22); padding-top: var(--s3);">
-            <span class="mono notice__date">Route A</span>
-            <span class="notice__body"><span class="notice__title">[Street name] to Highway 97 northbound</span></span>
-          </li>
-          <li class="notice" style="border-bottom: 1px solid rgba(252,252,247,.22);">
-            <span class="mono notice__date">Route B</span>
-            <span class="notice__body"><span class="notice__title">[Street name] to Highway 97 southbound</span></span>
-          </li>
-        </ul>
-        <p class="muted" style="font-weight: 300; font-size: var(--t-sm);">A printable map is in the documents library. Keep a copy in the car &mdash; cell service fails first.</p>
-      </div>
+  <!-- ===================== ALERTS ===================== -->
+  <section class="container" id="alerts">
+    <div class="panel bg-forest on-dark">
+      <div class="panel-split">
+        <div class="stack" style="gap: var(--s3);">
+          <p class="mono lime-text">Notifications and alerts</p>
+          <h2 class="h1">Emergencies happen with little or no notice.</h2>
+          <p class="muted" style="font-weight: 300; max-width: 32em;">Deschutes Alerts uses reverse-911 technology to send emergency notifications about threats to your safety. You can opt in to receive them by phone call, text message and email.</p>
+          <p><a class="btn btn--lime" href="https://www.deschutes.org/911/page/sign-deschutes-alerts" rel="noopener">Sign up for Deschutes Alerts</a></p>
+        </div>
 
-      <div class="stack" style="gap: var(--s3);">
-        <p class="mono" style="color: var(--lime);">Emergency numbers</p>
-        <div class="stack" style="gap: var(--s2);">
-          <div class="stack" style="gap: 4px;">
-            <span class="mono" style="color: var(--glass);">Fire or immediate danger</span>
-            <a href="tel:911" class="h3" style="text-decoration: none; color: var(--snow);">911</a>
-          </div>
-          <div class="stack" style="gap: 4px;">
-            <span class="mono" style="color: var(--glass);">Deschutes County Sheriff &mdash; non-emergency</span>
-            <a href="tel:+15416936911" class="sub" style="text-decoration: none; color: var(--snow); font-family: var(--mono);">541-693-6911</a>
-          </div>
-          <div class="stack" style="gap: 4px;">
-            <span class="mono" style="color: var(--glass);">WRHA Fire Safety Committee</span>
-            <a href="tel:+1541XXXXXXX" class="sub" style="text-decoration: none; color: var(--snow); font-family: var(--mono);">[541-XXX-XXXX]</a>
+        <div class="stack" style="gap: var(--s1);">
+          <a class="card card--outline" href="https://www.watchduty.org/how-it-works/overview" rel="noopener" style="border-color: rgba(252,252,247,.24); color: var(--snow);">
+            <span class="mono lime-text">How it works</span>
+            <span class="sub">Watch Duty overview</span>
+            <p style="color: var(--glass);">See how the app works before you install it.</p>
+          </a>
+          <a class="card card--outline" href="https://www.watchduty.org/" rel="noopener" style="border-color: rgba(252,252,247,.24); color: var(--snow);">
+            <span class="mono lime-text">Download</span>
+            <span class="sub">Get the app</span>
+            <p style="color: var(--glass);">Configure it to alert you for fire activity in a selected area.</p>
+          </a>
+          <div class="card card--outline" style="border-color: rgba(252,252,247,.24); color: var(--snow);">
+            <span class="mono lime-text">Emergency</span>
+            <span class="sub"><a href="tel:911" style="color: var(--snow); text-decoration: none;">911</a> &middot; <a href="tel:+15416936911" style="color: var(--snow); text-decoration: none;">541-693-6911</a></span>
+            <p style="color: var(--glass);">Immediate danger, then the Deschutes County Sheriff non-emergency line.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===================== HARDENING ===================== -->
   <section class="section container" id="hardening">
     <div class="section-head">
-      <h2 class="h2">Home hardening</h2>
-      <p class="muted">What actually catches, in the order it catches.</p>
+      <div class="stack" style="gap: var(--s2);">
+        <p class="mono sage-text">Protect your investment</p>
+        <h2 class="h2">Home hardening assessments.</h2>
+      </div>
     </div>
 
-    <div class="doc-list">
-      <article class="doc">
-        <div class="doc__name">
-          <span class="mono">HH&mdash;01</span>
-          <h3 class="doc__title">Clear the first five feet around the house</h3>
+    <div class="panel bg-stone">
+      <div class="panel-split">
+        <div class="stack" style="gap: var(--s3);">
+          <p class="lede" style="max-width: 34em;">Would you like a second set of eyes on how prepared your home is to survive a wildfire?</p>
+          <p class="muted" style="max-width: 34em;">Trained volunteer assessors within the neighborhood will arrange to walk your property with you and give you suggestions, tips and insights into things you can do to harden your home&rsquo;s defenses.</p>
+          <p><a class="btn btn--primary" href="https://docs.google.com/forms/d/e/1FAIpQLScvlJK57DNSF4iKc3WjfiiFRsY2H9BIyoghKbFmlpgjbVjmgw/viewform" rel="noopener">Request an assessment</a></p>
         </div>
-        <span class="doc__meta">Zone 0</span>
-        <span class="doc__meta">Highest value</span>
-        <a class="btn btn--sm" href="#hardening">How</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name">
-          <span class="mono">HH&mdash;02</span>
-          <h3 class="doc__title">Screen vents and box in open eaves</h3>
+
+        <div class="stack" style="gap: var(--s1);">
+          <div class="card" style="background: var(--snow);">
+            <span class="mono card__code">Who runs it</span>
+            <span class="sub">Fire Education Committee</span>
+            <p>Lincoln Mayer, P.J. Johnson, Craig Clasby and Jim Anthony.</p>
+            <p style="margin-top: var(--s1);"><a class="link-arrow" href="mailto:FireEducation@woodsideranch.net">FireEducation@woodsideranch.net
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+          </div>
+          <div class="card" style="background: var(--snow);">
+            <span class="mono card__code">Evacuation routes</span>
+            <span class="sub">Fire Safety Committee</span>
+            <p>Reviews evacuation routes in the neighborhood and impacts beyond it. Ray Miao, Brian Firebaugh and Mark Marshall.</p>
+            <p style="margin-top: var(--s1);"><a class="link-arrow" href="mailto:FireSafety@woodsideranch.net">FireSafety@woodsideranch.net
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+          </div>
         </div>
-        <span class="doc__meta">Embers</span>
-        <span class="doc__meta">One weekend</span>
-        <a class="btn btn--sm" href="#hardening">How</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name">
-          <span class="mono">HH&mdash;03</span>
-          <h3 class="doc__title">Limb up ponderosa and thin ladder fuels</h3>
-        </div>
-        <span class="doc__meta">Zone 1&ndash;2</span>
-        <span class="doc__meta">Seasonal</span>
-        <a class="btn btn--sm" href="#hardening">How</a>
-      </article>
-      <article class="doc" id="burn">
-        <div class="doc__name">
-          <span class="mono">BURN</span>
-          <h3 class="doc__title">Current burn status and open-burning rules</h3>
-        </div>
-        <span class="doc__meta">[Status]</span>
-        <span class="doc__meta">Updated [date]</span>
-        <a class="btn btn--sm" href="https://centraloregonfire.org" rel="noopener">Check</a>
-      </article>
+      </div>
     </div>
   </section>
 
@@ -186,45 +167,41 @@
 <footer class="footer on-dark">
   <div class="container footer__inner">
     <div class="stack" style="gap: var(--s2);">
-      <svg viewBox="0 0 480 140" width="80" style="color: var(--snow);" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
+      <svg viewBox="0 0 480 140" width="76" style="color: var(--snow);" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
       <p style="color: var(--snow); font-weight: 300; font-size: var(--t-sm); line-height: 1.6;">
-        Woodside Ranch Homeowners Association<br>
-        61141 S. Highway 97 #616<br>
-        Bend, OR 97702
+        Woodside Ranch Homeowners Association<br>61141 S. Highway 97 #616<br>Bend, OR 97702
       </p>
+      <p><a href="mailto:board@woodsideranch.net">board@woodsideranch.net</a></p>
     </div>
-
     <nav aria-labelledby="f-assoc">
       <h2 class="mono" id="f-assoc">Association</h2>
       <ul style="margin-top: var(--s2);">
-        <li><a href="documents.html">Board &amp; committees</a></li>
-        <li><a href="documents.html#governing">CC&amp;Rs</a></li>
-        <li><a href="documents.html#minutes">Minutes &amp; budgets</a></li>
+        <li><a href="association.html#board">Board &amp; committees</a></li>
+        <li><a href="documents.html#ccrs">CC&amp;Rs</a></li>
+        <li><a href="documents.html#minutes">Minutes &amp; reports</a></li>
+        <li><a href="index.html#dues">Pay dues</a></li>
       </ul>
     </nav>
-
     <nav aria-labelledby="f-hood">
       <h2 class="mono" id="f-hood">Neighborhood</h2>
       <ul style="margin-top: var(--s2);">
-        <li><a href="index.html#happening">Caldera Ranch</a></li>
-        <li><a href="index.html#happening">Gardening</a></li>
-        <li><a href="index.html#happening">Email list</a></li>
+        <li><a href="caldera-ranch.html">Caldera Ranch</a></li>
+        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScKza3wHTd480idv_B-S4RJlWp1Wq-uszUS447Sayzmmhx9Ww/viewform" rel="noopener">Email list</a></li>
+        <li><a href="https://oldfarmbend.com/" rel="noopener">Old Farm District NA</a></li>
       </ul>
     </nav>
-
     <nav aria-labelledby="f-fire">
       <h2 class="mono" id="f-fire">Fire</h2>
       <ul style="margin-top: var(--s2);">
-        <li><a href="fire-safety.html#routes">Evacuation routes</a></li>
-        <li><a href="fire-safety.html#hardening">Home hardening</a></li>
+        <li><a href="fire-safety.html#alerts">Notifications &amp; alerts</a></li>
         <li><a href="fire-safety.html#burn">Burn status</a></li>
+        <li><a href="fire-safety.html#hardening">Home hardening</a></li>
       </ul>
     </nav>
   </div>
-
   <div class="container footer__legal">
-    <span class="mono">501(c)(4) non-profit &middot; run by residents</span>
-    <span class="mono">Last updated [DD Month YYYY]</span>
+    <span class="mono">Not-for-profit 501(c)(4) &middot; operated by residents</span>
+    <span class="mono">External links open the source site</span>
   </div>
 </footer>
 
