@@ -166,7 +166,10 @@ a:hover { color: var(--forest-soft); }
   min-height: var(--header-h); position: relative;
 }
 .brand { display: flex; align-items: center; gap: var(--s2); text-decoration: none; color: inherit; }
-.brand svg { width: 74px; height: auto; color: currentColor; }
+/* The mark is 3.67:1. Sized generously enough to read at a glance on a phone,
+   where the old traced version was a faint squiggle. */
+.brand__mark { width: 82px; height: auto; color: currentColor; flex-shrink: 0; }
+.footer__mark { width: 84px; height: auto; }
 .brand__name { font-family: var(--display); font-size: var(--t-lg); font-weight: 400; white-space: nowrap; }
 
 .nav { display: flex; align-items: center; gap: var(--s3); }
@@ -486,6 +489,10 @@ a.doc:hover .doc__action { background: var(--forest); color: var(--snow); }
   .nav .btn:hover { background: #c3ee85; color: var(--forest); }
 }
 
+@media (max-width: 940px) {
+  .brand__mark { width: 72px; }
+  .brand__name { font-size: var(--t-body); }
+}
 @media (max-width: 780px) { .hero__media img { object-position: 8% 50%; } }
 @media (max-width: 560px) { .hero__actions .btn { width: 100%; } }
 
