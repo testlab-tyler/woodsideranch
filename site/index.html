@@ -21,7 +21,7 @@
   </a>
 </div>
 
-<header class="header">
+<header class="header header--over">
   <div class="container header__inner">
     <a class="brand" href="index.html">
       <svg viewBox="0 0 480 140" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
@@ -49,25 +49,18 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="hero__media">
-      <img src="assets/img/hero-mist.jpg" alt="" width="1600" height="1067" fetchpriority="high">
+      <img src="assets/img/hero-river.jpg" srcset="assets/img/hero-river-sm.jpg 900w, assets/img/hero-river.jpg 2000w" sizes="100vw" alt="" width="2000" height="1124" fetchpriority="high">
     </div>
     <div class="container hero__inner">
-      <div class="glass-panel">
-        <p class="mono sage-text">Woodside Ranch &mdash; Southeast Bend, Oregon</p>
-        <h1 class="display" style="margin-top: var(--s3);">A neighborhood of 257 homes, run entirely by the people who live in it.</h1>
-        <p class="lede muted" style="margin-top: var(--s3); max-width: 30em;">Established in the 1970s next to the Deschutes National Forest, and governed by six phases of CC&amp;Rs and a volunteer board.</p>
-
+      <div class="hero__copy">
+        <p class="mono hero__eyebrow">Southeast Bend, Oregon</p>
+        <h1 class="display">A neighborhood run by the people who live in it.</h1>
+        <p class="lede hero__lede">Two hundred and fifty-seven homes on the edge of the Deschutes National Forest, looked after by a volunteer board since the 1970s.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#dues">Pay my dues</a>
-          <a class="link-arrow" href="association.html">About the association
+          <a class="btn btn--lime" href="#dues">Pay my dues</a>
+          <a class="link-arrow" href="association.html" style="color: var(--snow);">About the association
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-        </div>
-
-        <div class="stat-row">
-          <div class="stat"><span class="stat__n">257</span><span class="mono">Properties</span></div>
-          <div class="stat"><span class="stat__n">6</span><span class="mono">Phases</span></div>
-          <div class="stat"><span class="stat__n">$100</span><span class="mono">Annual dues</span></div>
         </div>
       </div>
     </div>
@@ -76,51 +69,57 @@
   <!-- ===================== TASKS ===================== -->
   <section class="section container">
     <div class="section-head">
-      <h2 class="h2">What do you need to do?</h2>
-      <p class="muted">Every common task, one click from here.</p>
+      <h2 class="h2">Everything an owner needs, in one place.</h2>
+      <p class="muted">Dues, the rules that run with your land, the people to call, and what the association is dealing with right now.</p>
     </div>
 
     <div class="grid grid--3">
       <a class="card card--tall" href="#dues">
-        <div class="card__top">
-          <span class="mono card__code">WR&mdash;01</span>
-          <span class="badge">$100 / year</span>
-        </div>
-        <span class="sub" style="margin-top: var(--s1);">Pay my dues</span>
-        <p>PayPal, Venmo, or a cheque by post. Put your address in the payment notes.</p>
+        <span class="sub">Pay my dues</span>
+        <p>One hundred dollars a year. PayPal, Venmo, or a cheque by post.</p>
+        <span class="card__go" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
       </a>
 
       <a class="card card--tall" href="association.html#acc">
-        <div class="card__top"><span class="mono card__code">WR&mdash;02</span></div>
-        <span class="sub" style="margin-top: var(--s1);">Change my home or landscape</span>
-        <p>The Architectural Control Committee. Some phases need pre-approval before you begin.</p>
+        <span class="sub">Change my home or landscape</span>
+        <p>The Architectural Control Committee. Some phases require pre-approval before you begin.</p>
+        <span class="card__go" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
       </a>
 
       <a class="card card--tall" href="documents.html">
-        <div class="card__top"><span class="mono card__code">WR&mdash;03</span></div>
-        <span class="sub" style="margin-top: var(--s1);">Find a document</span>
-        <p>CC&amp;Rs for all six phases, annual meeting minutes and treasurer&rsquo;s reports.</p>
-      </a>
-
-      <a class="card card--tall" href="caldera-ranch.html">
-        <div class="card__top">
-          <span class="mono card__code">WR&mdash;04</span>
-          <span class="badge">Active</span>
-        </div>
-        <span class="sub" style="margin-top: var(--s1);">Follow Caldera Ranch</span>
-        <p>The 716-unit development across Knott Road, and what the council decides next.</p>
+        <span class="sub">Find a document</span>
+        <p>CC&amp;Rs for all six phases, annual meeting minutes and the dues form.</p>
+        <span class="card__go" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
       </a>
 
       <a class="card card--tall" href="association.html#board">
-        <div class="card__top"><span class="mono card__code">WR&mdash;05</span></div>
-        <span class="sub" style="margin-top: var(--s1);">Know who to call</span>
-        <p>Five board members and six standing committees, each with a direct email.</p>
+        <span class="sub">Know who to call</span>
+        <p>Five board members and six standing committees, each with its own address.</p>
+        <span class="card__go" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <a class="card card--tall" href="caldera-ranch.html">
+        <span class="sub">Follow Caldera Ranch</span>
+        <p>The 716-unit development across Knott Road, and what the council decides next.</p>
+        <span class="card__go" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
       </a>
 
       <a class="card card--tall card--dark" href="fire-safety.html">
-        <div class="card__top"><span class="mono card__code">WR&mdash;06</span></div>
-        <span class="sub" style="margin-top: var(--s1);">Prepare for wildfire</span>
+        <span class="sub">Prepare for wildfire</span>
         <p>Alerts, burn status, home hardening assessments and evacuation planning.</p>
+        <span class="card__go" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
       </a>
     </div>
   </section>

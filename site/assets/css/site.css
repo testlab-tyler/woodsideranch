@@ -12,6 +12,7 @@
   --sage:       #757c5d;
   --olive:      #9f995b;
   --eucalyptus: #698e79;
+  --label:      #5f6549;   /* darkened sage - 5.1:1 on stone, 5.7:1 on snow at 12px */
 
   --pewter: #666666;
   --ash:    #b3b3b3;
@@ -73,7 +74,7 @@ a:hover { color: var(--sage); }
 :focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; border-radius: 4px; }
 .on-dark :focus-visible { outline-color: var(--lime); }
 
-.display { font-size: clamp(2.25rem, 4.6vw, 3.25rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.025em; }
+.display { font-size: clamp(2.5rem, 5.2vw, 4rem); font-weight: 300; line-height: 1.04; letter-spacing: -0.03em; }
 .h1  { font-size: clamp(1.875rem, 3.6vw, var(--t-h1)); font-weight: 350; line-height: 1.1; letter-spacing: -0.02em; }
 .h2  { font-size: clamp(1.625rem, 3vw, var(--t-h2)); font-weight: 300; line-height: 1.12; letter-spacing: -0.015em; }
 .h3  { font-size: clamp(1.375rem, 2.4vw, var(--t-h3)); font-weight: 300; line-height: 1.2; letter-spacing: -0.015em; }
@@ -90,7 +91,7 @@ a:hover { color: var(--sage); }
 .on-dark a { color: var(--snow); }
 .on-dark a:hover { color: var(--lime); }
 .lime-text { color: var(--lime); }
-.sage-text { color: var(--sage); }
+.sage-text { color: var(--label); }
 
 .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
 .section { padding-block: clamp(48px, 7vw, var(--s8)); }
@@ -123,39 +124,56 @@ a:hover { color: var(--sage); }
 .announce a { color: var(--forest); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
 .announce a:hover { color: var(--forest-deep); text-decoration: underline; }
 
-/* ---------- Header: glass bar riding over the hero image ---------- */
+/* ---------- Header ----------
+   Default: dark type on the Snow White page.
+   .header--over: transparent, Snow White type, riding on top of a dark hero
+   image. Measured against hero-river.jpg, the nav strip fails AA on 0.3% of
+   pixels, so no scrim or glass bar is needed. */
 .header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(252, 252, 247, 0.74);
+  background: var(--snow);
+  color: var(--forest);
+}
+.header--over { background: transparent; color: var(--snow); transition: background-color .2s ease, color .2s ease; }
+
+/* Once the header leaves the hero image it has to stop being white-on-white.
+   Frosted Snow White — the system's documented translucent surface — used
+   here as a scroll state rather than as a panel over the photograph. */
+.header--over.is-past {
+  background: rgba(252, 252, 247, 0.82);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   color: var(--forest);
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .header { background: var(--snow); }
+  .header--over.is-past { background: var(--snow); }
 }
+.header--over.is-past .btn--lime { background: var(--forest); color: var(--snow); }
 .header__inner {
   display: flex; align-items: center; justify-content: space-between; gap: var(--s4);
   min-height: var(--header-h); position: relative;
 }
-.brand { display: flex; align-items: center; gap: var(--s2); text-decoration: none; color: var(--forest); }
+.brand { display: flex; align-items: center; gap: var(--s2); text-decoration: none; color: inherit; }
 .brand svg { width: 74px; height: auto; color: currentColor; }
 .brand__name { font-size: var(--t-lg); font-weight: 400; letter-spacing: -0.01em; white-space: nowrap; }
 
 .nav { display: flex; align-items: center; gap: var(--s4); }
-.nav > a { font-size: var(--t-sm); font-weight: 400; text-decoration: none; color: var(--forest); white-space: nowrap; }
-.nav > a:hover { color: var(--sage); }
+.nav > a { font-size: var(--t-sm); font-weight: 400; text-decoration: none; color: inherit; white-space: nowrap; }
+.nav > a:hover { opacity: .68; }
 .nav > a[aria-current="page"] { font-weight: 500; }
 
 .nav-toggle {
   display: none; align-items: center; gap: var(--s1);
-  background: transparent; color: var(--forest);
-  border: 1px solid var(--ash); border-radius: var(--r-pill);
+  background: transparent; color: inherit;
+  border: 1px solid currentColor; border-radius: var(--r-pill);
   padding: 11px 18px; min-height: 46px;
   font: inherit; font-size: var(--t-sm); font-weight: 500; cursor: pointer;
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons ----------
+   Every variant is written .btn.btn--x so it outranks the contextual colour
+   rules (.nav > a, .on-dark a). Those were silently repainting button text
+   to match its own background — invisible labels. */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--s1);
   border-radius: var(--r-pill); padding: 15px 30px; min-height: 52px;
@@ -163,14 +181,14 @@ a:hover { color: var(--sage); }
   text-decoration: none; border: 1px solid transparent; cursor: pointer;
   transition: background-color .15s ease, color .15s ease, border-color .15s ease;
 }
-.btn--primary { background: var(--forest); color: var(--snow); }
-.btn--primary:hover { background: var(--forest-deep); color: var(--snow); }
-.btn--lime { background: var(--lime); color: var(--forest); }
-.btn--lime:hover { background: #c3ee85; color: var(--forest); }
-.btn--outline { border-color: var(--forest); color: var(--forest); }
-.btn--outline:hover { background: var(--forest); color: var(--snow); }
-.btn--ghost-dark { border-color: var(--sage); color: var(--snow); }
-.btn--ghost-dark:hover { background: var(--sage); color: var(--snow); }
+.btn.btn--primary { background: var(--forest); color: var(--snow); }
+.btn.btn--primary:hover { background: var(--forest-deep); color: var(--snow); }
+.btn.btn--lime { background: var(--lime); color: var(--forest); }
+.btn.btn--lime:hover { background: #c3ee85; color: var(--forest); }
+.btn.btn--outline { border-color: var(--forest); color: var(--forest); background: transparent; }
+.btn.btn--outline:hover { background: var(--forest); color: var(--snow); }
+.btn.btn--ghost-dark { border-color: var(--sage); color: var(--snow); background: transparent; }
+.btn.btn--ghost-dark:hover { background: var(--sage); color: var(--snow); }
 .btn--sm { min-height: 44px; padding: 11px 22px; }
 
 /* text link with arrow — Seed's secondary action */
@@ -188,50 +206,48 @@ a:hover { color: var(--sage); }
   border-radius: var(--r-pill); padding: 5px 14px;
   font-size: var(--t-xs); font-weight: 500; line-height: 1.3; white-space: nowrap;
 }
-.badge--outline { background: transparent; border: 1px solid var(--olive); color: var(--olive); }
+/* Olive Gold is 2.5:1 on stone — too light to carry 14px text. The badge keeps
+   its outlined form but takes the label colour. */
+.badge--outline { background: transparent; border: 1px solid var(--label); color: var(--label); }
 .badge--dark { background: var(--forest); color: var(--lime); }
 
-/* ---------- Hero: full-bleed image, header rides over it ---------- */
+/* ---------- Hero ----------
+   Full-bleed photograph, no scrim, no panel. Type sits directly on the image
+   the way the reference does — the copy column is held to 560px because that
+   is where the photograph stays dark and the river has not yet entered. */
 .hero {
   position: relative;
   margin-top: calc(-1 * var(--header-h));
-  padding-top: var(--header-h);
-  background: var(--stone);
+  background: var(--forest);
   border-radius: 0 0 var(--r-lg) var(--r-lg);
   overflow: hidden;
   isolation: isolate;
+  min-height: clamp(560px, 78vh, 820px);
+  display: flex;
+  align-items: flex-end;
 }
 .hero__media { position: absolute; inset: 0; z-index: -1; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; }
-.hero__inner { padding-block: clamp(56px, 8vw, 104px) clamp(56px, 8vw, 104px); }
 
-/* The glass. Snow White at 0.74 alpha reads 6.7:1 against Forest Depths even
-   over pure black, so legibility never depends on the photograph. */
-.glass-panel {
-  background: rgba(252, 252, 247, 0.74);
-  backdrop-filter: blur(30px) saturate(1.3);
-  -webkit-backdrop-filter: blur(30px) saturate(1.3);
-  border-radius: var(--r-lg);
-  padding: clamp(28px, 4vw, 52px);
-  max-width: 660px;
-}
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass-panel { background: rgba(252, 252, 247, 0.95); }
-}
-.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); margin-top: var(--s4); }
+.hero__inner { padding-block: clamp(120px, 14vw, 180px) clamp(56px, 7vw, 88px); width: 100%; }
+.hero__copy { max-width: 560px; color: var(--snow); }
+.hero__copy .display { margin-top: var(--s3); }
+.hero__lede { margin-top: var(--s3); color: rgba(252, 252, 247, 0.82); max-width: 26em; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); margin-top: var(--s5); }
+.hero__eyebrow { color: var(--lime); }
 
-.stat-row {
-  display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 44px);
-  margin-top: var(--s5); padding-top: var(--s3);
-  border-top: 1px solid rgba(28, 58, 19, 0.18);
+/* ---------- Section heads ----------
+   Headline left, supporting copy in its own column right — the reference's
+   pattern. Grid, not space-between, so a short line does not float off alone. */
+.section-head {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px); align-items: start;
+  margin-bottom: clamp(32px, 4vw, 48px);
 }
-.stat { display: flex; flex-direction: column; gap: 4px; }
-.stat__n { font-size: var(--t-h3); font-weight: 300; letter-spacing: -0.02em; line-height: 1; }
-.stat .mono { color: var(--sage); font-size: 11px; }
-
-/* ---------- Section heads ---------- */
-.section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--s4); flex-wrap: wrap; margin-bottom: var(--s4); }
-.section-head p { max-width: 36em; }
+.section-head > :last-child { max-width: 34em; }
+.section-head--solo { grid-template-columns: 1fr; }
+.section-head .link-arrow { justify-self: start; align-self: end; }
+@media (max-width: 780px) { .section-head { grid-template-columns: 1fr; } }
 
 /* ---------- Cards ---------- */
 .grid { display: grid; gap: var(--s1); }
@@ -240,14 +256,19 @@ a:hover { color: var(--sage); }
 .grid--4 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 
 .card {
-  display: flex; flex-direction: column; gap: var(--s1);
+  display: flex; flex-direction: column; gap: var(--s2);
   background: var(--stone); border-radius: var(--r-card);
-  padding: var(--s3); text-decoration: none; color: var(--forest);
+  padding: clamp(24px, 2.4vw, 32px); text-decoration: none; color: var(--forest);
   transition: background-color .15s ease;
 }
+/* the arrow sits at the foot of the card, pushed down by the copy above it */
+.card__go { margin-top: auto; padding-top: var(--s2); color: var(--label); display: block; }
+.card__go svg { transition: transform .15s ease; }
+a.card:hover .card__go svg { transform: translateX(4px); }
+.card--dark .card__go { color: var(--lime); }
 a.card:hover { background: #e5e6df; color: var(--forest); }
 .card__top { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s2); }
-.card__code { color: var(--sage); }
+.card__code { color: var(--label); }
 .card p { font-size: var(--t-sm); color: var(--pewter); line-height: 1.5; }
 .card--tall { min-height: 190px; }
 .card--dark { background: var(--forest); color: var(--snow); }
@@ -270,7 +291,7 @@ a.card--outline:hover { background: var(--stone); }
 .notice p { font-size: var(--t-sm); font-weight: 300; color: var(--glass); }
 .notice--light { border-top-color: var(--stone); }
 .notice--light:last-of-type { border-bottom-color: var(--stone); }
-.notice--light .notice__date { color: var(--sage); }
+.notice--light .notice__date { color: var(--label); }
 .notice--light p { color: var(--pewter); }
 
 /* ---------- Document rows ---------- */
@@ -290,7 +311,7 @@ a.card--outline:hover { background: var(--stone); }
   background: var(--stone); border-radius: var(--r-card); padding: 20px var(--s3);
 }
 .doc__name { display: flex; align-items: center; gap: var(--s2); min-width: 0; flex-wrap: wrap; }
-.doc__name .mono { color: var(--sage); flex-shrink: 0; }
+.doc__name .mono { color: var(--label); flex-shrink: 0; }
 .doc__title { font-size: var(--t-body); font-weight: 400; }
 .doc__meta { font-family: var(--mono); font-size: var(--t-xs); font-weight: 300; color: var(--pewter); letter-spacing: .015em; }
 .doc .btn { background: var(--snow); color: var(--forest); justify-self: start; }
@@ -299,7 +320,7 @@ a.card--outline:hover { background: var(--stone); }
 /* ---------- People ---------- */
 .person { display: flex; flex-direction: column; gap: 6px; padding: var(--s3); border-radius: var(--r-card); background: var(--stone); }
 .person__name { font-size: var(--t-lg); font-weight: 400; letter-spacing: -0.01em; }
-.person .mono { color: var(--sage); }
+.person .mono { color: var(--label); }
 .member-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s1); }
 .member { background: var(--snow); border-radius: var(--r-pill); padding: 5px 14px; font-size: var(--t-xs); font-weight: 400; }
 .card--dark .member { background: rgba(252,252,247,.12); color: var(--snow); }
@@ -308,7 +329,7 @@ a.card--outline:hover { background: var(--stone); }
 .timeline { display: flex; flex-direction: column; }
 .tl { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: var(--s3); padding-block: var(--s3); border-top: 1px solid var(--stone); }
 .tl:last-child { border-bottom: 1px solid var(--stone); }
-.tl__when { color: var(--sage); padding-top: 4px; }
+.tl__when { color: var(--label); padding-top: 4px; }
 .tl__what { display: flex; flex-direction: column; gap: 6px; }
 .tl__title { font-size: var(--t-lg); font-weight: 400; line-height: 1.3; }
 .tl p { font-size: var(--t-sm); color: var(--pewter); }
@@ -317,12 +338,12 @@ a.card--outline:hover { background: var(--stone); }
 /* ---------- Footer ---------- */
 .footer { background: var(--forest); color: var(--glass); border-radius: var(--r-lg) var(--r-lg) 0 0; margin-top: clamp(48px, 7vw, var(--s8)); }
 .footer__inner { display: grid; grid-template-columns: minmax(240px, 1.3fr) repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s5); padding-block: var(--s8) var(--s5); }
-.footer h2 { font-size: var(--t-mono); }
+.footer h2 { font-size: var(--t-mono); color: var(--glass); }
 .footer ul { display: flex; flex-direction: column; gap: 12px; }
 .footer a { font-size: var(--t-sm); font-weight: 300; text-decoration: none; color: var(--glass); }
 .footer a:hover { color: var(--lime); }
 .footer__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--s2); padding-block: var(--s3); border-top: 1px solid rgba(252,252,247,.18); }
-.footer__legal .mono { color: var(--sage); }
+.footer__legal .mono { color: var(--glass); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 940px) {
@@ -354,4 +375,13 @@ a.card--outline:hover { background: var(--stone); }
   body { background: #fff; color: #000; font-size: 12pt; }
   .glass-panel, .panel, .footer, .bg-forest { background: none !important; color: #000 !important; backdrop-filter: none !important; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
+}
+
+/* Flat hero — utility pages that need the shape of a hero but no photograph. */
+.hero--flat { min-height: clamp(420px, 52vh, 560px); background: var(--forest); }
+
+/* Narrow viewports crop the hero to its centre — which is exactly where the
+   river is. Pull the framing left so the copy still sits on dark forest. */
+@media (max-width: 780px) {
+  .hero__media img { object-position: 8% 50%; }
 }

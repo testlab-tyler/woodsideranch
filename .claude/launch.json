@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "woodside-ranch-site",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "site"],
+      "name": "woodside-ranch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["serve.mjs"],
       "port": 8765
     }
   ]

@@ -1,7 +1,9 @@
-/* Local preview server for site/ — dev only, not deployed. */
+/* Local preview server for site/ — dev only, never deployed.
+   Also exposes POST /_save?name=<file> so images can be re-encoded in the
+   browser (canvas) and written to assets/img without an image dependency. */
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
-import { extname, join, resolve } from 'node:path';
+import { readFile, writeFile } from 'node:fs/promises';
+import { extname, join, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(fileURLToPath(new URL('./site/', import.meta.url)));
@@ -14,18 +16,29 @@ const TYPES = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.png': 'image/png',
+  '.webp': 'image/webp',
   '.ico': 'image/x-icon',
 };
 
 createServer(async (req, res) => {
-  let pathname = decodeURIComponent(req.url.split('?')[0]);
-  if (pathname.endsWith('/')) pathname += 'index.html';
+  const [pathnameRaw, query] = req.url.split('?');
+  let pathname = decodeURIComponent(pathnameRaw);
 
-  const file = resolve(join(ROOT, pathname));
-  if (!file.startsWith(ROOT)) {
-    res.writeHead(403).end('403');
+  if (req.method === 'POST' && pathname === '/_save') {
+    const name = basename(new URLSearchParams(query || '').get('name') || '');
+    if (!name) { res.writeHead(400).end('name required'); return; }
+    const chunks = [];
+    for await (const chunk of req) chunks.push(chunk);
+    const buf = Buffer.concat(chunks);
+    await writeFile(join(ROOT, 'assets', 'img', name), buf);
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('saved ' + name + ' ' + buf.length + ' bytes');
     return;
   }
+
+  if (pathname.endsWith('/')) pathname += 'index.html';
+  const file = resolve(join(ROOT, pathname));
+  if (!file.startsWith(ROOT)) { res.writeHead(403).end('403'); return; }
 
   try {
     const buf = await readFile(file);
