@@ -30,3 +30,4 @@ wp-config.php
 wp-content/uploads/
 *.sql
 *.sql.gz
+originals/
