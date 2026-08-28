@@ -440,53 +440,59 @@ a.doc:hover .doc__action { background: var(--forest); color: var(--snow); }
 .footer__legal .mono { color: var(--glass); }
 
 /* ---------- Mobile navigation: full-screen overlay ---------- */
-@media (max-width: 940px) {
-  .nav-toggle { display: inline-flex; }
-  .nav {
-    position: fixed; inset: 0; z-index: 80;
-    display: none; flex-direction: column; align-items: stretch; justify-content: flex-start;
-    gap: 0; padding: var(--s3) var(--gutter) var(--s8);
-    background: var(--forest); color: var(--snow);
-    overflow-y: auto;
-  }
-  .nav.is-open { display: flex; }
-  .nav__close {
-    display: inline-flex; align-items: center; gap: var(--s1);
-    align-self: flex-end; margin-bottom: var(--s6);
-    background: transparent; color: var(--snow);
-    border: 1px solid rgba(252,252,247,.4); border-radius: var(--r-pill);
-    padding: 11px 18px; min-height: 46px;
-    font: inherit; font-size: var(--t-sm); font-weight: 500; cursor: pointer;
-  }
-  /* :not(.btn) — the Pay dues pill is also a direct child and must keep its
-     own padding, radius and colour rather than inherit the link treatment. */
-  .nav > a:not(.btn) {
-    color: var(--snow); font-family: var(--display); font-size: 1.6rem; font-weight: 400;
-    padding: var(--s3) 0; min-height: 64px; display: flex; align-items: center;
-    border-bottom: 1px solid rgba(252,252,247,.16); white-space: normal;
-  }
-  .nav > a:not(.btn):hover, .nav > a:not(.btn)[aria-current="page"] { opacity: 1; color: var(--lime); }
-  /* no capsule on mobile — it is a nav link like the others, with its mark */
-  .nav .nav__fire {
-    order: 0; margin: 0; border: 0; border-bottom: 1px solid rgba(252,252,247,.16);
-    border-radius: 0; padding: var(--s3) 0; gap: var(--s2);
-    color: var(--ember-light); background: transparent;
-  }
-  .header .nav .nav__fire:hover,
-  .header--over .nav .nav__fire:hover { background: transparent; color: var(--lime); }
-  /* The primary button is Forest Depths, which vanishes on the Forest Depths
-     overlay. Inside the menu it takes the lime treatment and full width, so it
-     reads as the one action rather than a stray line of text. */
-  .nav .btn {
-    margin-top: var(--s5);
-    align-self: stretch;
-    background: var(--lime);
-    color: var(--forest);
-    font-size: var(--t-body);
-    min-height: 60px;
-    padding: 18px 28px;
-  }
-  .nav .btn:hover { background: #c3ee85; color: var(--forest); }
+/* ---------- Compact navigation ----------
+   Driven by measurement, not a fixed breakpoint: site.js compares what the
+   brand + nav actually need against the space available and adds .is-compact
+   the moment they would collide. That way the drawer appears when the nav
+   genuinely stops fitting — after a font swap, a longer link, or an odd
+   window width — rather than at a number guessed in advance. */
+.header.is-compact .nav-toggle { display: inline-flex; }
+.header.is-compact .nav {
+  position: fixed; inset: 0; z-index: 80;
+  display: none; flex-direction: column; align-items: stretch; justify-content: flex-start;
+  gap: 0; padding: var(--s3) var(--gutter) var(--s8);
+  background: var(--forest); color: var(--snow);
+  overflow-y: auto;
+}
+.header.is-compact .nav.is-open { display: flex; }
+.header.is-compact .nav__close {
+  display: inline-flex; align-items: center; gap: var(--s1);
+  align-self: flex-end; margin-bottom: var(--s6);
+  background: transparent; color: var(--snow);
+  border: 1px solid rgba(252,252,247,.4); border-radius: var(--r-pill);
+  padding: 11px 18px; min-height: 46px;
+  font: inherit; font-size: var(--t-sm); font-weight: 500; cursor: pointer;
+}
+/* :not(.btn) — the Pay dues pill is also a direct child and must keep its
+   own padding, radius and colour rather than inherit the link treatment. */
+.header.is-compact .nav > a:not(.btn) {
+  color: var(--snow); font-family: var(--display); font-size: 1.6rem; font-weight: 400;
+  padding: var(--s3) 0; min-height: 64px; display: flex; align-items: center;
+  border-bottom: 1px solid rgba(252,252,247,.16); white-space: normal;
+}
+.header.is-compact .nav > a:not(.btn):hover,
+.header.is-compact .nav > a:not(.btn)[aria-current="page"] { opacity: 1; color: var(--lime); }
+/* no capsule on mobile — it is a nav link like the others, with its mark */
+.header.is-compact .nav .nav__fire {
+  order: 0; margin: 0; border: 0; border-bottom: 1px solid rgba(252,252,247,.16);
+  border-radius: 0; padding: var(--s3) 0; gap: var(--s2);
+  color: var(--ember-light); background: transparent;
+}
+.header.is-compact .nav .nav__fire:hover { background: transparent; color: var(--lime); }
+/* The primary button is Forest Depths, which vanishes on the Forest Depths
+   overlay. Inside the menu it takes the lime treatment and full width, so it
+   reads as the one action rather than a stray line of text. */
+.header.is-compact .nav .btn {
+  margin-top: var(--s5);
+  align-self: stretch;
+  background: var(--lime);
+  color: var(--forest);
+  font-size: var(--t-body);
+  min-height: 60px;
+  padding: 18px 28px;
+}
+.header.is-compact .nav .btn:hover { background: #c3ee85; color: var(--forest); 
+
 }
 
 @media (max-width: 940px) {
@@ -519,4 +525,12 @@ a.doc:hover .doc__action { background: var(--forest); color: var(--snow); }
 .will-reveal[data-reveal-delay='3'] { transition-delay: .21s; }
 @media (prefers-reduced-motion: reduce) {
   .will-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* If the script never runs there is no drawer to open, so the honest fallback
+   is to let the header wrap rather than clip its own navigation. */
+@media (max-width: 940px) {
+  html:not(.has-js) .header__inner { flex-wrap: wrap; row-gap: var(--s2); }
+  html:not(.has-js) .nav { flex-wrap: wrap; row-gap: var(--s1); }
+  html:not(.has-js) .nav-toggle { display: none; }
 }

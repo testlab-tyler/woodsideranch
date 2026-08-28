@@ -4,6 +4,8 @@
 (function () {
   'use strict';
 
+  document.documentElement.classList.add('has-js');
+
   /* ---------------------------------------------------------------- header */
   var header = document.querySelector('.header--over');
   var hero = document.querySelector('.hero');
@@ -17,7 +19,35 @@
     header.classList.add('is-past');   /* no observer: legible beats pretty */
   }
 
+  /* ---------------------------------------------------------- compact nav */
+  /* Switch to the drawer when the nav actually stops fitting, rather than at a
+     breakpoint guessed in advance. Content width moves with the font swap and
+     with any link the board renames later, so measure it. */
+  var headerEl = document.querySelector('.header');
+  var inner = document.querySelector('.header__inner');
+  var brand = document.querySelector('.brand');
+  var navEl = document.getElementById('primary-nav');
+
+  function fitNav() {
+    if (!headerEl || !inner || !brand || !navEl) return;
+    if (navEl.classList.contains('is-open')) return;   /* never yank an open menu */
+
+    /* Measure in the roomy state, then decide. Both happen in one synchronous
+       block, so the browser never paints the intermediate layout. */
+    headerEl.classList.remove('is-compact');
+    var available = inner.clientWidth;
+    var gap = parseFloat(getComputedStyle(inner).columnGap) || 32;
+    var needed = brand.offsetWidth + navEl.scrollWidth + gap;
+    if (needed > available) headerEl.classList.add('is-compact');
+  }
+
+  fitNav();
+  window.addEventListener('resize', fitNav, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitNav);
+  if ('ResizeObserver' in window && inner) new ResizeObserver(fitNav).observe(inner);
+
   /* ------------------------------------------------------------- mobile nav */
+  var header0 = document.querySelector('.header');
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('primary-nav');
   var close = nav && nav.querySelector('.nav__close');
@@ -51,10 +81,10 @@
       if (e.target.closest('a')) setOpen(false);
     });
 
-    var mq = window.matchMedia('(min-width: 941px)');
-    var onChange = function () { if (mq.matches) setOpen(false); };
-    if (mq.addEventListener) mq.addEventListener('change', onChange);
-    else mq.addListener(onChange);
+    /* Close the drawer the moment the nav fits again, whatever width that is. */
+    window.addEventListener('resize', function () {
+      if (nav.classList.contains('is-open') && !header0.classList.contains('is-compact')) setOpen(false);
+    }, { passive: true });
   }
 
   /* -------------------------------------------------------- document filter */
