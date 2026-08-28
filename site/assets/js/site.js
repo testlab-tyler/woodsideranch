@@ -88,6 +88,53 @@
     });
   }
 
+  /* ------------------------------------------------------- reveal on scroll */
+  /* Stagger cards within a row so a grid arrives as a row, not all at once. */
+  Array.prototype.forEach.call(document.querySelectorAll('.grid, .cal, .doc-list'), function (group) {
+    Array.prototype.forEach.call(group.children, function (child, i) {
+      if (!child.hasAttribute('data-reveal')) child.setAttribute('data-reveal', '');
+      child.setAttribute('data-reveal-delay', String(i % 4));
+    });
+  });
+
+  /* Arm ONLY what is below the fold. Everything already on screen stays as it
+     is — no hidden state means no way to get stuck hidden. */
+  var armed = [];
+  Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function (el) {
+    if (el.getBoundingClientRect().top >= window.innerHeight) {
+      el.classList.add('will-reveal');
+      armed.push(el);
+    }
+  });
+
+  if (armed.length) {
+    var show = function (el) { el.classList.add('is-in'); };
+    var sweep = function () {
+      for (var i = armed.length - 1; i >= 0; i--) {
+        var el = armed[i], b = el.getBoundingClientRect();
+        if (b.top < window.innerHeight && b.bottom > 0) { show(el); armed.splice(i, 1); }
+      }
+    };
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          show(en.target);
+          io.unobserve(en.target);
+          var k = armed.indexOf(en.target); if (k > -1) armed.splice(k, 1);
+        });
+      }, { rootMargin: '0px', threshold: 0 });
+      armed.slice().forEach(function (el) { io.observe(el); });
+    }
+
+    /* Scroll and resize always fire, so correctness rests on these. */
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    window.addEventListener('load', sweep);
+    setTimeout(sweep, 800);
+  }
+
   /* ------------------------------------------------- app store, by platform */
   /* Send people to the store their phone can actually install from. Anything
      we cannot identify — including every desktop — keeps the web link. */

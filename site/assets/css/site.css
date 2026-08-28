@@ -20,7 +20,8 @@
   --glass:  #c4c7c4;
   --stone:  #eeeee9;
   --snow:   #fcfcf7;
-  --ember:  #b4531f;       /* fire only — never decorative */
+  --ember:  #b4531f;
+  --ember-light: #e8a06a;       /* fire only — never decorative */
 
   --t-h1:   2.5rem;
   --t-h2:   2.25rem;
@@ -126,22 +127,39 @@ a:hover { color: var(--forest-soft); }
   background: var(--lime); color: var(--forest);
   text-align: center; padding: 12px var(--gutter);
   font-size: var(--t-sm); font-weight: 500;
-  position: relative; z-index: 70;
+  position: relative; z-index: 40;   /* below the header, so the full-screen
+                                        nav overlay covers it when open */
 }
 .announce a { color: var(--forest); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
 .announce a:hover { color: var(--forest-deep); text-decoration: underline; }
 
 /* ---------- Header ---------- */
 .header { position: sticky; top: 0; z-index: 60; background: var(--snow); color: var(--forest); }
-.header--over { background: transparent; color: var(--snow); transition: background-color .2s ease, color .2s ease; }
-.header--over.is-past {
+/* The frost lives on a pseudo-element, never on .header itself. An element
+   carrying backdrop-filter becomes the containing block for its fixed-position
+   descendants — which would trap the full-screen mobile nav inside the header. */
+.header--over { background: transparent; color: var(--snow); transition: color .25s ease; }
+.header--over::before,
+.header--over.is-past::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  transition: background-color .25s ease, border-color .25s ease;
+}
+.header--over::before {
+  background: rgba(28, 58, 19, 0.30);
+  backdrop-filter: blur(16px) saturate(1.25);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  border-bottom: 1px solid rgba(252, 252, 247, 0.14);
+}
+.header--over.is-past { color: var(--forest); }
+.header--over.is-past::before {
   background: rgba(252, 252, 247, 0.82);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  color: var(--forest);
+  border-bottom: 1px solid var(--stone);
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .header--over.is-past { background: var(--snow); }
+  .header--over::before { background: rgba(20, 43, 14, 0.72); }
+  .header--over.is-past::before { background: var(--snow); }
 }
 .header__inner {
   display: flex; align-items: center; justify-content: space-between; gap: var(--s4);
@@ -157,17 +175,21 @@ a:hover { color: var(--forest-soft); }
 .nav > a[aria-current="page"] { font-weight: 600; }
 .nav__close { display: none; }
 
-/* Fire sits first and carries a mark — it is the one link that matters at 2am.
-   Ember is reserved for it and used nowhere else on the site. */
+/* Fire sits beside the primary CTA and carries a mark — it is the one link
+   that matters at 2am. Ember is reserved for it, used nowhere else. */
 .nav__fire {
   display: inline-flex; align-items: center; gap: 7px;
   border: 1px solid currentColor; border-radius: var(--r-pill);
-  padding: 8px 16px; margin-right: var(--s1);
+  padding: 8px 16px; margin-left: var(--s1);
 }
 .nav__fire svg { flex-shrink: 0; }
 .header:not(.header--over) .nav__fire,
 .header--over.is-past .nav__fire { color: var(--ember); border-color: var(--ember); }
-.nav__fire:hover { opacity: 1; background: var(--ember); color: var(--snow); border-color: var(--ember); }
+.header .nav__fire:hover,
+.header--over .nav__fire:hover,
+.header--over.is-past .nav__fire:hover {
+  opacity: 1; background: var(--ember); color: var(--snow); border-color: var(--ember);
+}
 
 .nav-toggle {
   display: none; align-items: center; gap: var(--s1);
@@ -225,6 +247,17 @@ a:hover { color: var(--forest-soft); }
 .hero--flat { min-height: clamp(400px, 50vh, 540px); background: var(--forest); }
 .hero__media { position: absolute; inset: 0; z-index: -1; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; }
+.hero__scrim {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(100deg,
+    rgba(18, 38, 12, 0.88) 0%,
+    rgba(18, 38, 12, 0.72) 26%,
+    rgba(18, 38, 12, 0.38) 55%,
+    rgba(18, 38, 12, 0.04) 82%);
+}
+@media (max-width: 780px) {
+  .hero__scrim { background: linear-gradient(170deg, rgba(18,38,12,.72) 0%, rgba(18,38,12,.82) 55%, rgba(18,38,12,.9) 100%); }
+}
 .hero__inner { padding-block: clamp(120px, 14vw, 180px) clamp(56px, 7vw, 88px); width: 100%; }
 .hero__copy { max-width: 560px; color: var(--snow); }
 .hero__copy .display { margin-top: var(--s3); }
@@ -422,18 +455,22 @@ a.doc:hover .doc__action { background: var(--forest); color: var(--snow); }
     padding: 11px 18px; min-height: 46px;
     font: inherit; font-size: var(--t-sm); font-weight: 500; cursor: pointer;
   }
-  .nav > a {
+  /* :not(.btn) — the Pay dues pill is also a direct child and must keep its
+     own padding, radius and colour rather than inherit the link treatment. */
+  .nav > a:not(.btn) {
     color: var(--snow); font-family: var(--display); font-size: 1.6rem; font-weight: 400;
     padding: var(--s3) 0; min-height: 64px; display: flex; align-items: center;
     border-bottom: 1px solid rgba(252,252,247,.16); white-space: normal;
   }
-  .nav > a:hover, .nav > a[aria-current="page"] { opacity: 1; color: var(--lime); }
+  .nav > a:not(.btn):hover, .nav > a:not(.btn)[aria-current="page"] { opacity: 1; color: var(--lime); }
+  /* no capsule on mobile — it is a nav link like the others, with its mark */
   .nav .nav__fire {
-    order: -1; margin: 0 0 var(--s3); border-radius: var(--r-card);
-    border: 1px solid var(--lime); color: var(--lime);
-    padding: var(--s3); font-size: 1.5rem; gap: var(--s2); min-height: 72px;
+    order: 0; margin: 0; border: 0; border-bottom: 1px solid rgba(252,252,247,.16);
+    border-radius: 0; padding: var(--s3) 0; gap: var(--s2);
+    color: var(--ember-light); background: transparent;
   }
-  .nav .nav__fire:hover { background: var(--lime); color: var(--forest); }
+  .header .nav .nav__fire:hover,
+  .header--over .nav .nav__fire:hover { background: transparent; color: var(--lime); }
   .nav .btn { margin-top: var(--s4); align-self: flex-start; font-size: var(--t-body); }
 }
 
@@ -445,4 +482,22 @@ a.doc:hover .doc__action { background: var(--forest); color: var(--snow); }
   body { background: #fff; color: #000; font-size: 12pt; }
   .panel, .footer, .bg-forest { background: none !important; color: #000 !important; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
+}
+
+
+/* ---------- On-scroll reveal ----------
+   The hidden state hangs off .will-reveal, a class the script adds ONLY to
+   elements that are already below the fold. Anything on screen at load is
+   never hidden, so a failure of the observer, the script, or the stylesheet
+   can never make readable content disappear. */
+.will-reveal {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.will-reveal.is-in { opacity: 1; transform: none; }
+.will-reveal[data-reveal-delay='1'] { transition-delay: .07s; }
+.will-reveal[data-reveal-delay='2'] { transition-delay: .14s; }
+.will-reveal[data-reveal-delay='3'] { transition-delay: .21s; }
+@media (prefers-reduced-motion: reduce) {
+  .will-reveal { opacity: 1; transform: none; transition: none; }
 }

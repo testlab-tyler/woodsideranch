@@ -42,7 +42,12 @@ createServer(async (req, res) => {
 
   try {
     const buf = await readFile(file);
-    res.writeHead(200, { 'Content-Type': TYPES[extname(file).toLowerCase()] || 'application/octet-stream' });
+    res.writeHead(200, {
+      'Content-Type': TYPES[extname(file).toLowerCase()] || 'application/octet-stream',
+      /* dev only — without this the browser serves stale CSS and JS, which
+         makes every visual check untrustworthy */
+      'Cache-Control': 'no-store, must-revalidate'
+    });
     res.end(buf);
   } catch {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
