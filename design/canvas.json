@@ -1,0 +1,48 @@
+{
+  "pages": [
+    { "id": "page-1", "name": "Seed direction" },
+    { "id": "page-2", "name": "Earlier directions" }
+  ],
+  "artboards": [
+    { "file": "Main.dc.html", "page": "page-1", "x": 0, "y": 0, "w": 1440, "h": 2400, "title": "Homepage" },
+    { "file": "Documents.dc.html", "page": "page-1", "x": 1600, "y": 0, "w": 1440, "h": 1720, "title": "Document library" },
+    { "file": "Mobile.dc.html", "page": "page-1", "x": 3200, "y": 0, "w": 390, "h": 1980, "title": "Phone" },
+    { "file": "PumiceJuniper.dc.html", "page": "page-2", "x": 0, "y": 0, "w": 1440, "h": 2240, "title": "Earlier A — Pumice & Juniper" },
+    { "file": "DirectionB.dc.html", "page": "page-2", "x": 1600, "y": 0, "w": 1440, "h": 1420, "title": "Earlier B — Basalt" }
+  ],
+  "annotations": [
+    {
+      "id": "seed-note",
+      "page": "page-1",
+      "x": 0,
+      "y": -190,
+      "w": 700,
+      "text": "SEED ARCHITECTURE — applied to Woodside Ranch\n\nForest Depths #1c3a13 as the only chromatic authority. Snow White #fcfcf7 canvas, never pure white. Lime Pulse #d3fa99 confined to badges. Whisper-light 300-weight headlines with -0.02em tracking. Pill controls at 1000px radius, 16px cards, 32px image cards. Flat throughout — no shadows, no gradients, no elevation.\n\n1200px container, 8px base unit, 64px section gaps."
+    },
+    {
+      "id": "mono-note",
+      "page": "page-1",
+      "x": 1600,
+      "y": -190,
+      "w": 620,
+      "text": "Seed's product-code treatment (DS-01, DM-02) translates directly to association records: CCR—P1, AM—2026, BUD—[YY].\n\nIt does real work here rather than being decoration — a code makes a document citable in a meeting, and gives every file a stable handle that survives renaming."
+    },
+    {
+      "id": "deviation-note",
+      "page": "page-1",
+      "x": 3200,
+      "y": -190,
+      "w": 480,
+      "text": "ONE DELIBERATE DEVIATION\n\nBody copy is set at 400 weight, not 350. The system reserves 400–500 for body, so this stays on-system — chosen because the readership skews older.\n\nHeadlines keep the 300 weight. Tap targets are 54–72px."
+    },
+    {
+      "id": "earlier-note",
+      "page": "page-2",
+      "x": 0,
+      "y": -150,
+      "w": 640,
+      "text": "The two directions from before the Seed reference. Kept for comparison — the Seed direction on page 1 supersedes both."
+    }
+  ],
+  "launch": { "view": "canvas", "page": "page-1" }
+}

@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..500&family=JetBrains+Mono:wght@300;400&display=swap">
+  <style>
+    body { margin: 0; font-family: Inter, "Helvetica Neue", Arial, sans-serif; background: #fcfcf7; color: #1c3a13; font-size: 18px; font-weight: 400; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3a13; text-underline-offset: 4px; }
+    a:hover { color: #757c5d; }
+    * { box-sizing: border-box; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; letter-spacing: 0.015em; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #fcfcf7;">
+
+  <div style="border-bottom: 1px solid #eeeee9;">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 40px; max-width: 1200px; margin: 0 auto; padding: 24px 0;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <svg width="80" height="23" viewBox="0 0 480 140" style="color: #1c3a13;" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
+        <span style="font-size: 20px; font-weight: 400; letter-spacing: -0.01em;">Woodside Ranch</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 32px; font-size: 16px; font-weight: 400;">
+        <a href="#" style="text-decoration: none;">Association</a>
+        <a href="#" style="text-decoration: none; font-weight: 500; border-bottom: 1px solid #1c3a13; padding-bottom: 2px;">Documents</a>
+        <a href="#" style="text-decoration: none;">Neighborhood</a>
+        <a href="#" style="text-decoration: none;">Fire safety</a>
+        <a href="#" style="text-decoration: none;">Contact</a>
+        <a href="#" style="background: #1c3a13; color: #fcfcf7; border-radius: 1000px; padding: 13px 28px; font-size: 16px; font-weight: 500; text-decoration: none;">Pay dues</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- page head -->
+  <div style="max-width: 1200px; margin: 0 auto; padding: 64px 0 32px;">
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px;">
+      <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">ASSOCIATION / DOCUMENTS</span>
+      <h1 style="font-size: 48px; font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin: 0;">Governing documents, budgets and minutes</h1>
+      <p style="font-size: 20px; font-weight: 300; line-height: 1.4; color: #666666; margin: 0;">Everything the association is required to keep, in the open. Nothing on this page needs a login.</p>
+    </div>
+  </div>
+
+  <!-- filters -->
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 0 32px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <a href="#" style="background: #1c3a13; color: #fcfcf7; border-radius: 1000px; padding: 11px 22px; font-size: 15px; font-weight: 500; text-decoration: none;">All</a>
+        <a href="#" style="border: 1px solid #b3b3b3; color: #1c3a13; border-radius: 1000px; padding: 11px 22px; font-size: 15px; font-weight: 400; text-decoration: none;">Governing</a>
+        <a href="#" style="border: 1px solid #b3b3b3; color: #1c3a13; border-radius: 1000px; padding: 11px 22px; font-size: 15px; font-weight: 400; text-decoration: none;">Financial</a>
+        <a href="#" style="border: 1px solid #b3b3b3; color: #1c3a13; border-radius: 1000px; padding: 11px 22px; font-size: 15px; font-weight: 400; text-decoration: none;">Minutes</a>
+        <a href="#" style="border: 1px solid #b3b3b3; color: #1c3a13; border-radius: 1000px; padding: 11px 22px; font-size: 15px; font-weight: 400; text-decoration: none;">Fire &amp; insurance</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; border: 1px solid #b3b3b3; border-radius: 8px; padding: 12px 16px; min-width: 300px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#666666" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <span style="color: #666666; font-size: 16px; font-weight: 400;">Search documents</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- governing -->
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 0 48px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; padding-bottom: 16px;">
+      <h2 style="font-size: 32px; font-weight: 300; letter-spacing: -0.015em; margin: 0;">Governing</h2>
+      <span style="font-size: 16px; font-weight: 400; color: #666666;">The rules that run with your land</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 150px 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">CCR&mdash;P1</span>
+          <span style="font-size: 18px; font-weight: 400;">Covenants, Conditions &amp; Restrictions &mdash; Phase 1</span>
+        </div>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">RECORDED</span>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">255 KB</span>
+        <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 150px 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">CCR&mdash;P2</span>
+          <span style="font-size: 18px; font-weight: 400;">Covenants, Conditions &amp; Restrictions &mdash; Phase 2</span>
+        </div>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">RECORDED</span>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">353 KB</span>
+        <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 150px 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">CCR&mdash;P3&ndash;6</span>
+          <span style="font-size: 18px; font-weight: 400;">Covenants, Conditions &amp; Restrictions &mdash; Phases 3 to 6</span>
+        </div>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">RECORDED</span>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">4 FILES</span>
+        <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">View all</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 150px 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">BYL&mdash;01</span>
+          <span style="font-size: 18px; font-weight: 400;">Bylaws</span>
+        </div>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">[YEAR]</span>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">[XX] KB</span>
+        <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- minutes -->
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 0 48px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; padding-bottom: 16px;">
+      <h2 style="font-size: 32px; font-weight: 300; letter-spacing: -0.015em; margin: 0;">Minutes</h2>
+      <span style="font-size: 16px; font-weight: 400; color: #666666;">Annual and regular board meetings</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 150px 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">AM&mdash;2026</span>
+          <span style="font-size: 18px; font-weight: 400;">Annual Meeting &mdash; 31 May 2026</span>
+        </div>
+        <span style="background: #d3fa99; border-radius: 1000px; padding: 5px 14px; font-size: 12px; font-weight: 500; justify-self: start;">Approved</span>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">[XX] KB</span>
+        <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 150px 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">BM&mdash;2026</span>
+          <span style="font-size: 18px; font-weight: 400;">Board Meeting &mdash; [DD Month 2026]</span>
+        </div>
+        <span style="border: 1px solid #9f995b; color: #9f995b; border-radius: 1000px; padding: 4px 13px; font-size: 12px; font-weight: 500; justify-self: start;">Draft</span>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">[XX] KB</span>
+        <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 150px 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">AM&mdash;2021</span>
+          <span style="font-size: 18px; font-weight: 400;">Annual Meeting &mdash; 2021</span>
+        </div>
+        <span style="background: #d3fa99; border-radius: 1000px; padding: 5px 14px; font-size: 12px; font-weight: 500; justify-self: start;">Approved</span>
+        <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">62 KB</span>
+        <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 24px; border: 1px solid #eeeee9; border-radius: 16px; padding: 20px 24px;">
+        <span style="font-size: 17px; font-weight: 400; color: #666666;">Annual meetings 2013&ndash;2019 &mdash; eight archived sets</span>
+        <a href="#" style="border: 1px solid #1c3a13; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none;">Open archive</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- financial + request -->
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 0 64px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 40px; align-items: start;">
+
+      <div>
+        <div style="display: flex; align-items: baseline; gap: 16px; padding-bottom: 16px;">
+          <h2 style="font-size: 32px; font-weight: 300; letter-spacing: -0.015em; margin: 0;">Financial</h2>
+          <span style="font-size: 16px; font-weight: 400; color: #666666;">Where the assessments go</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">BUD&mdash;[YY]</span>
+              <span style="font-size: 18px; font-weight: 400;">[Year] Budget</span>
+            </div>
+            <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">[XX] KB</span>
+            <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">TR&mdash;[YY]</span>
+              <span style="font-size: 18px; font-weight: 400;">Treasurer's Report</span>
+            </div>
+            <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">[XX] KB</span>
+            <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 110px 140px; gap: 24px; align-items: center; background: #eeeee9; border-radius: 16px; padding: 20px 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <span class="mono" style="font-size: 12px; font-weight: 400; color: #757c5d;">DUE&mdash;26</span>
+              <span style="font-size: 18px; font-weight: 400;">Annual Dues Payment Form 2026</span>
+            </div>
+            <span class="mono" style="font-size: 13px; font-weight: 300; color: #666666;">101 KB</span>
+            <a href="#" style="background: #fcfcf7; border-radius: 1000px; padding: 9px 20px; font-size: 15px; font-weight: 500; text-decoration: none; justify-self: start;">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; background: #1c3a13; color: #fcfcf7; border-radius: 32px; padding: 32px;">
+        <span class="mono" style="font-size: 12px; font-weight: 400; color: #d3fa99;">RECORDS REQUEST</span>
+        <span style="font-size: 24px; font-weight: 350; letter-spacing: -0.015em; line-height: 1.2;">Can't find something?</span>
+        <span style="font-size: 16px; font-weight: 300; color: #c4c7c4; line-height: 1.5;">Owners are entitled to the association's records. Ask the secretary and it gets posted here, publicly, rather than sent to one person privately.</span>
+        <a href="#" style="background: #d3fa99; color: #1c3a13; border-radius: 1000px; padding: 12px 26px; font-size: 15px; font-weight: 500; text-decoration: none; align-self: flex-start; margin-top: 8px;">Request a document</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="background: #1c3a13; color: #c4c7c4;">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 24px; max-width: 1200px; margin: 0 auto; padding: 24px 0;">
+      <span class="mono" style="font-size: 12px; font-weight: 300;">LAST UPDATED [DD MONTH YYYY]</span>
+      <span class="mono" style="font-size: 12px; font-weight: 300;">WOODSIDE RANCH HOMEOWNERS ASSOCIATION</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":1720}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

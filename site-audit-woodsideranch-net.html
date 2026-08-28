@@ -1,0 +1,501 @@
+<title>Woodside Ranch Site Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root {
+  --ground: #F1F4F0;
+  --surface: #FFFFFF;
+  --surface-sunk: #E8ECE6;
+  --ink: #1B221E;
+  --ink-muted: #5A665C;
+  --ink-faint: #7E8A80;
+  --accent: #2F5D50;
+  --accent-soft: #DCE8E2;
+  --signal: #A8481B;
+  --signal-soft: #F5E3D8;
+  --warn: #8A6D1F;
+  --warn-soft: #F2EBD6;
+  --rule: #D6DCD4;
+  --rule-strong: #BAC3B7;
+
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --measure: 68ch;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #131714;
+    --surface: #1C221E;
+    --surface-sunk: #232A25;
+    --ink: #E7ECE6;
+    --ink-muted: #9DA99F;
+    --ink-faint: #7B867D;
+    --accent: #74B79E;
+    --accent-soft: #22332C;
+    --signal: #E08A54;
+    --signal-soft: #33241A;
+    --warn: #D9BC63;
+    --warn-soft: #2E2818;
+    --rule: #2B322D;
+    --rule-strong: #3C453E;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #131714;
+  --surface: #1C221E;
+  --surface-sunk: #232A25;
+  --ink: #E7ECE6;
+  --ink-muted: #9DA99F;
+  --ink-faint: #7B867D;
+  --accent: #74B79E;
+  --accent-soft: #22332C;
+  --signal: #E08A54;
+  --signal-soft: #33241A;
+  --warn: #D9BC63;
+  --warn-soft: #2E2818;
+  --rule: #2B322D;
+  --rule-strong: #3C453E;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--pad) 6rem; }
+.col { max-width: var(--measure); }
+
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; text-wrap: balance; line-height: 1.15; margin: 0; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3rem);
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.masthead h1 { font-size: clamp(2.3rem, 6vw, 3.9rem); letter-spacing: -0.02em; max-width: 16ch; }
+.masthead .standfirst { font-size: clamp(1.1rem, 2.2vw, 1.3rem); color: var(--ink-muted); max-width: 58ch; }
+
+.meta-strip {
+  display: flex; flex-wrap: wrap; gap: 0 2.25rem;
+  padding-top: 0.75rem; border-top: 1px solid var(--rule);
+  font-size: 0.9rem; color: var(--ink-muted);
+}
+.meta-strip div { padding: 0.35rem 0; }
+.meta-strip strong { color: var(--ink); font-weight: 600; }
+
+section { padding-top: clamp(3rem, 7vw, 5rem); }
+.section-head { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2rem; }
+.section-head h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); letter-spacing: -0.015em; }
+.section-head p { color: var(--ink-muted); max-width: var(--measure); }
+
+.stack { display: flex; flex-direction: column; gap: 1.15rem; }
+
+/* verdict banner */
+.verdict {
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-left: 5px solid var(--accent);
+  border-radius: 0 3px 3px 0;
+  padding: clamp(1.4rem, 3.5vw, 2rem);
+  display: flex; flex-direction: column; gap: 0.85rem;
+}
+.verdict h3 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
+.verdict p { color: var(--ink-muted); max-width: 62ch; }
+
+/* findings */
+.findings { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+.finding {
+  background: var(--surface);
+  padding: clamp(1.15rem, 3vw, 1.6rem);
+  display: grid; grid-template-columns: 2.5rem 1fr; gap: 0 1.15rem;
+}
+.finding .idx {
+  font-family: var(--mono); font-size: 0.85rem; font-weight: 600;
+  color: var(--ink-faint); padding-top: 0.28rem; font-variant-numeric: tabular-nums;
+}
+.finding-body { display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+.finding h4 { font-size: 1.08rem; }
+.finding p { color: var(--ink-muted); font-size: 0.96rem; }
+.finding .where { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-faint); }
+
+.quote {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  background: var(--surface-sunk);
+  border-radius: 3px;
+  padding: 0.8rem 1rem;
+  color: var(--ink);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.sev {
+  display: inline-block;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 0.18rem 0.5rem; border-radius: 2px; align-self: flex-start;
+}
+.sev.a { background: var(--signal-soft); color: var(--signal); }
+.sev.b { background: var(--warn-soft); color: var(--warn); }
+.sev.c { background: var(--accent-soft); color: var(--accent); }
+
+.group-label {
+  display: flex; align-items: baseline; gap: 0.9rem;
+  margin: 2.25rem 0 1rem;
+}
+.group-label h3 { font-size: 1.25rem; }
+.group-label span { font-size: 0.88rem; color: var(--ink-faint); }
+
+@media (max-width: 620px) {
+  .finding { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+/* inventory table */
+.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 660px; font-variant-numeric: tabular-nums; }
+caption { text-align: left; padding: 1rem 1.15rem; font-size: 0.88rem; color: var(--ink-muted); border-bottom: 1px solid var(--rule); background: var(--surface-sunk); }
+th, td { text-align: left; padding: 0.62rem 0.85rem; border-bottom: 1px solid var(--rule); font-size: 0.9rem; }
+thead th { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; white-space: nowrap; }
+td.path { font-family: var(--mono); font-size: 0.82rem; white-space: nowrap; }
+td.st { font-family: var(--mono); font-size: 0.8rem; }
+tbody tr:last-child td { border-bottom: none; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; vertical-align: 1px; }
+.dot.ok { background: var(--accent); }
+.dot.empty { background: var(--warn); }
+.dot.bad { background: var(--signal); }
+
+/* keep list */
+.keep { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+.keep div { background: var(--surface); padding: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.keep strong { font-family: var(--display); font-size: 1.02rem; font-weight: 600; }
+.keep span { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.45; }
+
+ul.tight { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem; color: var(--ink-muted); }
+ul.tight strong { color: var(--ink); }
+
+footer { margin-top: clamp(3rem, 7vw, 5rem); border-top: 1px solid var(--rule); padding-top: 1.5rem; font-size: 0.85rem; color: var(--ink-faint); max-width: var(--measure); }
+
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">Site Audit · woodsideranch.net · 27 August 2026</span>
+    <h1>Nothing is broken. Almost everything is empty.</h1>
+    <p class="standfirst">A full crawl of woodsideranch.net — every page in the sitemap, every document link, every HTTP response. The result is not what it looks like from the outside.</p>
+    <div class="meta-strip">
+      <div><strong>36</strong> pages crawled</div>
+      <div><strong>18</strong> documents tested</div>
+      <div><strong>0</strong> broken links</div>
+      <div><strong>0</strong> upcoming events</div>
+      <div>WordPress <strong>7.0.4</strong></div>
+    </div>
+  </header>
+
+  <section id="verdict">
+    <div class="verdict">
+      <h3>The headline finding</h3>
+      <p>Every single page returns HTTP 200. Every one of the 18 PDFs — including all six phases of the CC&amp;Rs — downloads correctly. Response times average 0.35 seconds. Technically, this site is healthy.</p>
+      <p>The problem is that a functioning member system, a functioning events calendar, and a functioning document library were all installed, and then almost nothing was put inside them. The resident area exists and is empty. The calendar exists and has no future events. The document library has three sections and two of them contain nothing. The site reads as neglected because it <em>is</em> neglected — but the fix is content and design, not repair.</p>
+      <p>One correction to my earlier read: there <strong>is</strong> a member system, and it works. Ultimate Member is installed with login, registration, a member directory, password reset and account pages, all live and functional. It just leads nowhere.</p>
+    </div>
+  </section>
+
+  <section id="findings">
+    <div class="section-head">
+      <span class="eyebrow">Findings</span>
+      <h2>What a resident or a buyer sees today</h2>
+      <p>Ordered by how much damage each one does to the impression the site gives. The first five are visible to anyone who visits right now.</p>
+    </div>
+
+    <div class="group-label">
+      <h3>Visibly wrong</h3>
+      <span>on live, public, indexed pages</span>
+    </div>
+
+    <div class="findings">
+
+      <article class="finding">
+        <div class="idx">01</div>
+        <div class="finding-body">
+          <span class="sev a">Embarrassing</span>
+          <h4>The events page is displaying WordPress's demo theme menu</h4>
+          <p class="where">/events/</p>
+          <p>At the bottom of the live events page, the default theme's placeholder navigation is rendering as real content:</p>
+          <div class="quote">Blog   About   FAQs   Authors   Events   Shop   Patterns   Themes   Twenty…</div>
+          <p>None of those are pages on this site. This is boilerplate that shipped with the WordPress theme and was never removed. It is the single most obviously amateur thing on the domain.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">02</div>
+        <div class="finding-body">
+          <span class="sev a">Embarrassing</span>
+          <h4>"There are no upcoming events"</h4>
+          <p class="where">/events/</p>
+          <p>The Events Calendar plugin is installed and working. It contains exactly two events, both in the past: the 2026 Summer Social (18 July) and the WRHA 2026 Annual Meeting (31 May). The page title itself renders as <em>"Events from Saturday, July 18 – Sunday, May 31"</em>, which is a date range running backwards.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">03</div>
+        <div class="finding-body">
+          <span class="sev a">Embarrassing</span>
+          <h4>The Summer Social points residents to a page that says nothing was found</h4>
+          <p class="where">/residents/</p>
+          <p>The Summer Social event description ends with "Visit the Resident Page for details." That page — which is publicly viewable, not actually gated — reads in full:</p>
+          <div class="quote">Woodside Ranch Residents
+This information on this page is intended for the Residents and Property Owners of Woodside Ranch
+
+Sorry, but nothing was found. Please try a search with different keywords.</div>
+          <p>A resident who followed that instruction to find out about the neighbourhood party was told to try different search keywords. This is the worst single journey on the site.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">04</div>
+        <div class="finding-body">
+          <span class="sev a">Embarrassing</span>
+          <h4>A developer's scratch page is live, public, and in the sitemap</h4>
+          <p class="where">/testpage/</p>
+          <p>Titled <em>"This is a New Page Title"</em>, containing "This is static content", an empty table captioned "Table Caption", and a button labelled "Button". It is listed in <code>wp-sitemap.xml</code>, which means it has been submitted to Google for indexing.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">05</div>
+        <div class="finding-body">
+          <span class="sev a">Embarrassing</span>
+          <h4>"Assocation Documents" — misspelled in the title tag, the breadcrumb and the nav</h4>
+          <p class="where">/association/documents/</p>
+          <p>The typo appears in the browser tab, in the on-page breadcrumb, and in the navigation menu. It is what Google displays in search results for that page.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="group-label">
+      <h3>Built but never filled</h3>
+      <span>the machinery exists; the content does not</span>
+    </div>
+
+    <div class="findings">
+
+      <article class="finding">
+        <div class="idx">06</div>
+        <div class="finding-body">
+          <span class="sev b">Hollow</span>
+          <h4>A complete member system with nothing behind it</h4>
+          <p class="where">/login/ · /register-2/ · /members/ · /account/ · /password-reset/ · /user/ · /logout/</p>
+          <p>Ultimate Member is fully installed and working. Registration collects username, first and last name, Woodside Ranch address, email and password. Login, password reset and a member directory all function. Seven pages of working infrastructure — and the only members-only destination, <code>/residents/</code>, is empty. Anyone who registers gets access to nothing.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">07</div>
+        <div class="finding-body">
+          <span class="sev b">Hollow</span>
+          <h4>Two of the three document sections contain zero documents</h4>
+          <p class="where">/association/documents/</p>
+          <p>The page presents three headings — Annual Meetings, <strong>Board Meetings</strong>, <strong>Treasurer Reports</strong> — plus an Archives toggle. Only Annual Meetings has anything in it. Board Meetings and Treasurer Reports are empty headings, which is worse than not listing them: it advertises that the records exist and then withholds them.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">08</div>
+        <div class="finding-body">
+          <span class="sev b">Hollow</span>
+          <h4>The minutes archive stops in 2021</h4>
+          <p class="where">8 PDFs, all serving correctly</p>
+          <p>Annual meeting minutes are posted for 2013, 2014, 2015, 2016, 2017, 2018, 2019 and 2021 — and then nothing. No 2022, 2023, 2024, 2025 or 2026. Note that 2020 is also missing. Every file that <em>is</em> there downloads perfectly, so this is not a broken-link problem. Five years of governance records are simply absent from a site whose main job is holding them.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">09</div>
+        <div class="finding-body">
+          <span class="sev b">Hollow</span>
+          <h4>The homepage has no headline</h4>
+          <p class="where">/</p>
+          <p>There is no <code>&lt;h1&gt;</code> element anywhere on the homepage. Beyond the SEO cost, it means screen-reader users get no page heading, and it is a symptom of the deeper problem: the homepage has no message. Its content is four paragraphs explaining what each menu item contains.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="group-label">
+      <h3>Technical &amp; housekeeping</h3>
+      <span>lower stakes, quick to fix</span>
+    </div>
+
+    <div class="findings">
+
+      <article class="finding">
+        <div class="idx">10</div>
+        <div class="finding-body">
+          <span class="sev c">Housekeeping</span>
+          <h4>The admin username is exposed via the author archive</h4>
+          <p class="where">/author/janthonybizinfosolutions-com/</p>
+          <p>A public, indexed page discloses the site administrator account, displayed as "WRHA Site Admin" and belonging to an outside vendor. Publishing a valid username halves the work of a brute-force login attempt. Author archives should be disabled on a site with one writer.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">11</div>
+        <div class="finding-body">
+          <span class="sev c">Housekeeping</span>
+          <h4>Pages weigh 88–116 KB of HTML to deliver a few paragraphs</h4>
+          <p>The homepage ships 107 KB of markup for roughly 250 words and two images. Nothing here is slow enough to hurt today — time to first byte averages 0.35s — but it shows how much plugin scaffolding is being loaded for how little content.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">12</div>
+        <div class="finding-body">
+          <span class="sev c">Housekeeping</span>
+          <h4>No tappable phone numbers anywhere; one of two homepage images has no alt text</h4>
+          <p>Zero <code>tel:</code> links across the whole site. On a phone, no number on this site can be tapped to call — which matters most on the fire safety pages, where it matters most of all.</p>
+        </div>
+      </article>
+
+      <article class="finding">
+        <div class="idx">13</div>
+        <div class="finding-body">
+          <span class="sev c">Housekeeping</span>
+          <h4>All body text is set in dark green</h4>
+          <p>Body copy renders in <code>#006100</code>. Contrast against white is 7.7:1, so this passes accessibility standards comfortably — it is not a compliance problem. It is an aesthetic one: coloured body text is one of the fastest ways a site reads as homemade.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="keep">
+    <div class="section-head">
+      <span class="eyebrow">Assets</span>
+      <h2>What's genuinely worth keeping</h2>
+      <p>More than you'd think. The rebuild is not starting from zero.</p>
+    </div>
+
+    <div class="keep">
+      <div>
+        <strong>All six phases of the CC&amp;Rs</strong>
+        <span>1.7 MB of correctly-serving PDFs covering every phase of the development. The hardest content to reassemble, and it's already here.</span>
+      </div>
+      <div>
+        <strong>The Fire Safety section</strong>
+        <span>By far the most developed part of the site: alerts, burn status, home hardening, home hardening assessments, and links out to Central Oregon Fire, Watch Duty and Deschutes Alerts. This is real, useful work.</span>
+      </div>
+      <div>
+        <strong>Six committee pages</strong>
+        <span>Architectural Control, Fire Safety, Fire Education, Government Liaison, Social, and Welcome — each with its own page and structure already written.</span>
+      </div>
+      <div>
+        <strong>The Caldera Ranch section</strong>
+        <span>The only genuinely current content on the site: three PDFs from August 2026 on the neighbouring development, including the City Council resolution summary. It's what the neighbourhood is actually engaged with right now.</span>
+      </div>
+      <div>
+        <strong>Eight years of annual minutes</strong>
+        <span>2013–2021. Incomplete, but a real archive that would take a long time to reconstruct.</span>
+      </div>
+      <div>
+        <strong>The domain and its ranking</strong>
+        <span>woodsideranch.net ranks first for the community name, runs clean HTTPS, and responds in 0.35s. Discoverability is already solved.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="inventory">
+    <div class="section-head">
+      <span class="eyebrow">Inventory</span>
+      <h2>Every page, and what's in it</h2>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <caption>All 36 URLs from wp-sitemap.xml. Every one returned HTTP 200.</caption>
+        <thead>
+          <tr><th>Path</th><th>Purpose</th><th>State</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="path">/</td><td>Homepage</td><td class="st"><span class="dot empty"></span>Describes the menu; no H1</td></tr>
+          <tr><td class="path">/association/</td><td>Association Info hub</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/association/ccrs/</td><td>CC&amp;Rs</td><td class="st"><span class="dot ok"></span>6 PDFs, all live</td></tr>
+          <tr><td class="path">/association/documents/</td><td>Minutes &amp; reports</td><td class="st"><span class="dot empty"></span>1 of 3 sections filled</td></tr>
+          <tr><td class="path">/association/organization/</td><td>How the HOA is structured</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/association-board/</td><td>Board &amp; Committees</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/committee-architectural-control/</td><td>ARC committee</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/committee-fire-safety/</td><td>Fire Safety committee</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/committee-fire-education/</td><td>Fire Education committee</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/committee-government-liaison/</td><td>Government Liaison</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/committee-social/</td><td>Social committee</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/committee-welcome/</td><td>Welcome committee</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/fire-safety/</td><td>Fire Safety hub</td><td class="st"><span class="dot ok"></span>Best section on the site</td></tr>
+          <tr><td class="path">/home-hardening-assessments/</td><td>Assessment programme</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/category/fire-safety/alerts/</td><td>Notifications &amp; Alerts</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/category/fire-safety/burn-status/</td><td>Burn Status</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/category/fire-safety/hardening/</td><td>Home Hardening</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/calderaranch/</td><td>Caldera Ranch Update</td><td class="st"><span class="dot ok"></span>Current — Aug 2026</td></tr>
+          <tr><td class="path">/neighborhood/</td><td>Neighborhood hub</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/neighborhood/gardening/</td><td>Gardening</td><td class="st"><span class="dot ok"></span>Populated</td></tr>
+          <tr><td class="path">/events/</td><td>Events calendar</td><td class="st"><span class="dot bad"></span>No future events; theme demo menu leaking</td></tr>
+          <tr><td class="path">/residents/</td><td>Resident-only content</td><td class="st"><span class="dot bad"></span>Empty — "nothing was found"</td></tr>
+          <tr><td class="path">/members/</td><td>Member directory</td><td class="st"><span class="dot empty"></span>Functional, unused</td></tr>
+          <tr><td class="path">/login/ /account/</td><td>Login</td><td class="st"><span class="dot empty"></span>Works; leads nowhere</td></tr>
+          <tr><td class="path">/register-2/</td><td>Registration</td><td class="st"><span class="dot empty"></span>Works; leads nowhere</td></tr>
+          <tr><td class="path">/password-reset/ /user/ /logout/</td><td>Account plumbing</td><td class="st"><span class="dot empty"></span>Functional</td></tr>
+          <tr><td class="path">/eventregistrationupdate/</td><td>Event registration</td><td class="st"><span class="dot empty"></span>Thin</td></tr>
+          <tr><td class="path">/testpage/</td><td>Developer scratch page</td><td class="st"><span class="dot bad"></span>Public and indexed — delete</td></tr>
+          <tr><td class="path">/author/janthonybizinfo…/</td><td>Author archive</td><td class="st"><span class="dot bad"></span>Exposes admin username — disable</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="implications">
+    <div class="section-head">
+      <span class="eyebrow">What this means for the rebuild</span>
+      <h2>Four things the crawl settles</h2>
+    </div>
+
+    <div class="col stack">
+      <p><strong>1. The content problem is bigger than the design problem.</strong> A beautiful new site with no minutes since 2021 and no upcoming events would look exactly as neglected within a year. Before launch, the association needs 2022–2026 minutes, treasurer reports, and at least one future-dated event. That's a board task, not a build task, and it should start now because it's the long pole.</p>
+      <p><strong>2. Kill the member system rather than rebuild it.</strong> Seven working pages currently guard an empty room. Nothing on this site needs to be private — CC&amp;Rs, minutes, budgets and committee pages should all be public, which is what every top-scoring site in the benchmark does. Put the resident directory in the dues portal where it belongs, tied to actual ownership records, and let the website be a website.</p>
+      <p><strong>3. The Fire Safety section should lead, not hide.</strong> It's the most substantial work anyone has done here, and for a community bordering the Deschutes National Forest it is the most valuable thing the association publishes. Right now it's a peer of "Gardening" in the menu. It should be a top-level destination with tappable emergency numbers.</p>
+      <p><strong>4. The high-end feel comes from confidence and currency, not decoration.</strong> The reason this site reads as cheap isn't the colour palette — it's that it apologises. It explains its own menu, advertises empty sections, and tells residents nothing was found. Sites that feel expensive show current information stated plainly: this month's meeting, this year's budget, these people, this number to call. Get the content current and the design honest, and the impression follows.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Crawl performed 27 August 2026 against woodsideranch.net. Method: full enumeration via <code>wp-sitemap.xml</code>, HTTP status and payload check on all 36 pages and all 18 linked documents, DOM inspection of key templates. Logged-in member views were not assessed — no credentials were used, and the audit covers only what an unauthenticated visitor can reach.</p>
+  </footer>
+
+</div>

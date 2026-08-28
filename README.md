@@ -68,3 +68,55 @@ Set once in the theme, non-negotiable:
 ## Open question
 
 Online dues payment was scoped without a member login area. Showing an owner *their* balance requires knowing who they are, so this resolves one of two ways: hand payment entirely to a hosted portal with its own separate login (simplest), or add a light members area on the site. To be decided before build.
+
+---
+
+## The site
+
+Static HTML in `site/`. No build step, no framework, no database — open
+`site/index.html` in a browser and it works.
+
+| Path | What it is |
+|---|---|
+| `site/index.html` | Homepage |
+| `site/documents.html` | Document library |
+| `site/fire-safety.html` | Fire &amp; evacuation |
+| `site/assets/css/site.css` | The whole design system as CSS custom properties |
+| `site/assets/js/site.js` | ~40 lines: header frost on scroll, mobile menu |
+| `site/assets/img/` | Longhorn mark (SVG) and photography |
+| `design/SEED-SYSTEM.md` | The token reference the CSS implements |
+| `serve.mjs` | Local preview only — not deployed |
+
+### Run it locally
+
+```
+node serve.mjs
+```
+
+Then open http://localhost:8765
+
+### Deploy
+
+Point Cloudflare Pages or Netlify at this repo with **build command: none** and
+**output directory: `site`**. Both are free at this scale and redeploy on push.
+
+### Design system
+
+Built on the "Seed" system documented at
+[styles.refero.design](https://styles.refero.design/style/cd723d5a-e7ea-4e4c-a3bb-6cf56e05057a).
+Every token lives in `:root` in `site.css`. The hard rules — verified in the
+browser against the rendered page — are: no shadows, no gradients, no pure
+white, no heading heavier than 500, pills at 1000px radius.
+
+The one deliberate deviation is body copy at weight 400 rather than 350. The
+system reserves 400–500 for body, so this stays in-system; it is set that way
+because the readership skews older.
+
+### Before launch
+
+- Replace every `[BRACKETED]` value — phone numbers, board names, dues amount,
+  meeting dates. They are marked rather than guessed.
+- Swap the Unsplash placeholders for photographs of Woodside Ranch itself.
+  See `assets/photos/CREDITS.md`.
+- Wire "Pay dues" to a hosted portal and the architectural review link to a
+  form builder. Neither should be built into this site.
