@@ -1,0 +1,37 @@
+# Cloudflare Pages reads this from the build output directory (site/).
+# Not used by the local dev server — serve.mjs sets its own no-store.
+#
+# The CSP below was checked against the actual pages: there are no inline
+# <script> blocks, all JavaScript is local, and the only external subresources
+# are the Google Fonts stylesheet and the font files it pulls. The 145 inline
+# style="" attributes are why style-src needs 'unsafe-inline'.
+#
+# Adding a contact form later means extending form-action, e.g.
+#   form-action 'self' https://formspree.io;
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; upgrade-insecure-requests
+
+# HTML always revalidates so a content edit is live immediately.
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS and JS carry no content hash in their filenames, so a long cache would
+# strand people on an old stylesheet after a deploy. They are ~26 KB together;
+# revalidation is a 304 and costs nothing worth saving.
+
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Images are the heavy bytes and change rarely.
+
+/assets/img/*
+  Cache-Control: public, max-age=604800
