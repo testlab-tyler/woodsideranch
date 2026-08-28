@@ -1,4 +1,9 @@
 # Cloudflare Pages reads this from the build output directory (site/).
+#
+# >>> PROTOTYPE: X-Robots-Tag below keeps this build out of search results.
+# >>> REMOVE that line (and the robots meta tag in every .html) before this
+# >>> goes live on woodsideranch.net, or the real site will never be indexed.
+#
 # Not used by the local dev server — serve.mjs sets its own no-store.
 #
 # The CSP below was checked against the actual pages: there are no inline
@@ -11,6 +16,7 @@
 
 /*
   X-Content-Type-Options: nosniff
+  X-Robots-Tag: noindex, nofollow
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=()

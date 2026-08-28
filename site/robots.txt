@@ -1,0 +1,11 @@
+# Crawling is deliberately ALLOWED here.
+#
+# This is a prototype and must stay out of search results, but the way to do
+# that is X-Robots-Tag / <meta name="robots" content="noindex">, not a
+# Disallow rule. A Disallow stops crawlers fetching the page at all, so they
+# never see the noindex — and the bare URL can still be listed in results.
+#
+# Do not add "Disallow: /" here. It would defeat the noindex.
+
+User-agent: *
+Allow: /
