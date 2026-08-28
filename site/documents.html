@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Documents — Woodside Ranch Homeowners Association</title>
-<meta name="description" content="CC&amp;Rs for all six phases of Woodside Ranch, annual meeting minutes, treasurer's reports and the annual dues payment form. No login required.">
+<meta name="description" content="CC&amp;Rs for all six phases of Woodside Ranch, annual meeting minutes and financial records. Open to everyone, no login required.">
 <link rel="icon" href="assets/img/longhorn.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..500&family=JetBrains+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300;400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="announce">
-  <a href="index.html#dues">Annual dues are $100 &mdash; now payable by PayPal or Venmo
+  <a href="#library">Every association record is public here &mdash; no login, no request needed
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
@@ -27,17 +27,27 @@
       <svg viewBox="0 0 480 140" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
       <span class="brand__name">Woodside Ranch</span>
     </a>
+
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       Menu
     </button>
+
     <nav class="nav" id="primary-nav" aria-label="Primary">
+      <button class="nav__close" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        Close
+      </button>
+      <a class="nav__fire" href="fire-safety.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1.6 3.2.6 5.2-.8 6.9C9.6 11.9 8 13.6 8 16a4 4 0 0 0 8 0c0-1.6-.7-2.9-1.5-4"/></svg>
+        Fire safety
+      </a>
       <a href="association.html">Association</a>
       <a href="documents.html" aria-current="page">Documents</a>
-      <a href="fire-safety.html">Fire safety</a>
+      <a href="calendar.html">Calendar</a>
       <a href="caldera-ranch.html">Caldera Ranch</a>
-      <a href="index.html#contact">Contact</a>
-      <a class="btn btn--primary btn--sm" href="index.html#dues">Pay dues</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn--primary btn--sm" href="pay-dues.html">Pay dues</a>
     </nav>
   </div>
 </header>
@@ -45,139 +55,167 @@
 <main id="main">
 
   <section class="section container">
-    <div class="stack" style="gap: var(--s3); max-width: 44ch;">
+    <div class="page-head">
       <p class="mono sage-text">Association / Documents</p>
-      <h1 class="display">Everything the association keeps, in the open.</h1>
-    </div>
-    <p class="lede muted" style="max-width: 42em; margin-top: var(--s4);">Nothing on this page requires a login. CC&amp;Rs are a set of rules and regulations defining how property owners can use their land and structures within Woodside Ranch &mdash; and each of the six phases has its own set.</p>
-
-    <div class="doc-filters" style="margin-top: var(--s5);">
-      <a class="chip is-active" href="#main">All</a>
-      <a class="chip" href="#ccrs">CC&amp;Rs</a>
-      <a class="chip" href="#minutes">Minutes</a>
-      <a class="chip" href="#financial">Financial</a>
+      <h1 class="display">The rules that run with your land.</h1>
+      <p class="lede muted">CC&amp;Rs set out how property owners may use their land and structures within Woodside Ranch. The neighborhood was developed in six phases and each phase has its own set, so start with the phase your property sits in.</p>
     </div>
   </section>
 
-  <!-- ===================== CC&Rs ===================== -->
-  <section class="section container" id="ccrs" style="padding-top: 0;">
-    <div class="section-head" style="margin-bottom: var(--s2);">
+  <section class="container" id="library">
+    <div class="doc-filters" data-doc-filters role="group" aria-label="Filter documents by type">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">All documents</button>
+      <button class="chip" type="button" data-filter="governing" aria-pressed="false">CC&amp;Rs &amp; bylaws</button>
+      <button class="chip" type="button" data-filter="minutes" aria-pressed="false">Minutes</button>
+      <button class="chip" type="button" data-filter="financial" aria-pressed="false">Financial</button>
+    </div>
+    <p class="mono sage-text" style="margin-top: var(--s2);">Every document opens in a new tab</p>
+  </section>
+
+  <!-- ===================== GOVERNING ===================== -->
+  <section class="section container" id="ccrs" style="padding-top: var(--s5);" data-doc-section>
+    <div class="section-head" style="margin-bottom: var(--s3);">
       <h2 class="h3">CC&amp;Rs by phase</h2>
-      <p class="muted">Covenants, Conditions and Restrictions</p>
+      <p class="muted">Covenants, Conditions and Restrictions, as recorded</p>
     </div>
 
     <div class="doc-list">
-      <article class="doc">
-        <div class="doc__name"><span class="mono">CCR&mdash;P1</span><h3 class="doc__title">Phase 1</h3></div>
+      <a class="doc" data-doc-group="governing" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-1-CCRs.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">Phase 1</span><span class="doc__title">Covenants, Conditions &amp; Restrictions</span></span>
         <span class="doc__meta">Recorded &middot; 255 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-1-CCRs.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">CCR&mdash;P2</span><h3 class="doc__title">Phase 2</h3></div>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="governing" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-2-CCRs.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">Phase 2</span><span class="doc__title">Covenants, Conditions &amp; Restrictions</span></span>
         <span class="doc__meta">Recorded &middot; 353 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-2-CCRs.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">CCR&mdash;P3</span><h3 class="doc__title">Phase 3</h3></div>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="governing" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-3-CCRs.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">Phase 3</span><span class="doc__title">Covenants, Conditions &amp; Restrictions</span></span>
         <span class="doc__meta">Recorded &middot; 244 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-3-CCRs.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">CCR&mdash;P4</span><h3 class="doc__title">Phase 4</h3></div>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="governing" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-4-CCRs.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">Phase 4</span><span class="doc__title">Covenants, Conditions &amp; Restrictions</span></span>
         <span class="doc__meta">Recorded &middot; 283 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-4-CCRs.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">CCR&mdash;P5</span><h3 class="doc__title">Phase 5</h3></div>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="governing" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-5-CCRs.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">Phase 5</span><span class="doc__title">Covenants, Conditions &amp; Restrictions</span></span>
         <span class="doc__meta">Recorded &middot; 319 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-5-CCRs.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">CCR&mdash;P6</span><h3 class="doc__title">Phase 6 &mdash; Woodside North</h3><span class="badge badge--outline">Filed 1982</span></div>
-        <span class="doc__meta">Recorded &middot; 202 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-6-CCRs.pdf" rel="noopener">Download PDF</a>
-      </article>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="governing" href="https://woodsideranch.net/wp-content/uploads/2025/05/WRHA-Phase-6-CCRs.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">Phase 6</span><span class="doc__title">Woodside North &mdash; Covenants, Conditions &amp; Restrictions</span></span>
+        <span class="doc__meta">Filed 1982 &middot; 202 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
     </div>
   </section>
 
   <!-- ===================== MINUTES ===================== -->
-  <section class="section container" id="minutes" style="padding-top: 0;">
-    <div class="section-head" style="margin-bottom: var(--s2);">
+  <section class="section container" id="minutes" style="padding-top: 0;" data-doc-section>
+    <div class="section-head" style="margin-bottom: var(--s3);">
       <h2 class="h3">Annual meeting minutes</h2>
       <p class="muted">Approved minutes from the Annual Membership Meeting</p>
     </div>
 
     <div class="doc-list">
-      <article class="doc">
-        <div class="doc__name"><span class="mono">AM&mdash;2021</span><h3 class="doc__title">Annual Meeting 2021</h3></div>
-        <span class="doc__meta">62 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2021.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">AM&mdash;2019</span><h3 class="doc__title">Annual Meeting 2019</h3></div>
-        <span class="doc__meta">33 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2019.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">AM&mdash;2018</span><h3 class="doc__title">Annual Meeting 2018</h3></div>
-        <span class="doc__meta">32 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2018.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">AM&mdash;2017</span><h3 class="doc__title">Annual Meeting 2017</h3></div>
-        <span class="doc__meta">31 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2017.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">AM&mdash;2016</span><h3 class="doc__title">Annual Meeting 2016</h3></div>
-        <span class="doc__meta">30 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2016.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">AM&mdash;2015</span><h3 class="doc__title">Annual Meeting 2015</h3></div>
-        <span class="doc__meta">33 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2015.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">AM&mdash;2014</span><h3 class="doc__title">Annual Meeting 2014</h3></div>
-        <span class="doc__meta">63 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/01/annual-meeting-minutes-2014.pdf" rel="noopener">Download PDF</a>
-      </article>
-      <article class="doc">
-        <div class="doc__name"><span class="mono">AM&mdash;2013</span><h3 class="doc__title">Annual Meeting 2013</h3></div>
-        <span class="doc__meta">59 KB</span>
-        <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/01/2013-annual-meeting-minutes.pdf" rel="noopener">Download PDF</a>
-      </article>
-    </div>
-
-    <div class="card card--outline" style="margin-top: var(--s3);">
-      <span class="mono card__code">Gap in the record</span>
-      <p style="font-size: var(--t-body); color: var(--forest);">Minutes for 2020 and for 2022 through 2026 are not currently posted. Board meeting minutes and treasurer&rsquo;s reports are also outstanding. If you need a set that is missing here, write to the secretary at <a href="mailto:board@woodsideranch.net">board@woodsideranch.net</a> &mdash; records requested by one owner get posted here for everyone.</p>
+      <a class="doc" data-doc-group="minutes" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2021.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">2021</span><span class="doc__title">Annual Meeting minutes</span></span>
+        <span class="doc__meta">Approved &middot; 62 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="minutes" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2019.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">2019</span><span class="doc__title">Annual Meeting minutes</span></span>
+        <span class="doc__meta">Approved &middot; 33 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="minutes" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2018.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">2018</span><span class="doc__title">Annual Meeting minutes</span></span>
+        <span class="doc__meta">Approved &middot; 32 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="minutes" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2017.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">2017</span><span class="doc__title">Annual Meeting minutes</span></span>
+        <span class="doc__meta">Approved &middot; 31 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="minutes" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2016.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">2016</span><span class="doc__title">Annual Meeting minutes</span></span>
+        <span class="doc__meta">Approved &middot; 30 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="minutes" href="https://woodsideranch.net/wp-content/uploads/2025/01/Annual-Meeting-Minutes-2015.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">2015</span><span class="doc__title">Annual Meeting minutes</span></span>
+        <span class="doc__meta">Approved &middot; 33 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="minutes" href="https://woodsideranch.net/wp-content/uploads/2025/01/annual-meeting-minutes-2014.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">2014</span><span class="doc__title">Annual Meeting minutes</span></span>
+        <span class="doc__meta">Approved &middot; 63 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
+      <a class="doc" data-doc-group="minutes" href="https://woodsideranch.net/wp-content/uploads/2025/01/2013-annual-meeting-minutes.pdf" target="_blank" rel="noopener">
+        <span class="doc__name"><span class="mono">2013</span><span class="doc__title">Annual Meeting minutes</span></span>
+        <span class="doc__meta">Approved &middot; 59 KB</span>
+        <span class="doc__action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>View PDF</span>
+      </a>
     </div>
   </section>
 
   <!-- ===================== FINANCIAL ===================== -->
-  <section class="section container" id="financial" style="padding-top: 0;">
-    <div class="panel-split">
-      <div>
-        <div class="section-head" style="margin-bottom: var(--s2);">
-          <h2 class="h3">Financial</h2>
-          <p class="muted">Dues and reporting</p>
+  <section class="section container" id="financial" style="padding-top: 0;" data-doc-section>
+    <div class="section-head" style="margin-bottom: var(--s3);">
+      <h2 class="h3">Financial</h2>
+      <p class="muted">Where the assessments go</p>
+    </div>
+
+    <div class="doc-list">
+      <div class="doc" data-doc-group="financial">
+        <span class="doc__name"><span class="mono">Budget</span><span class="doc__title">Annual budget</span></span>
+        <span class="doc__meta">Not yet posted</span>
+        <span class="doc__meta">&mdash;</span>
+      </div>
+      <div class="doc" data-doc-group="financial">
+        <span class="doc__name"><span class="mono">Report</span><span class="doc__title">Treasurer&rsquo;s report</span></span>
+        <span class="doc__meta">Not yet posted</span>
+        <span class="doc__meta">&mdash;</span>
+      </div>
+    </div>
+
+    <div class="panel bg-stone" style="margin-top: var(--s3);">
+      <div class="panel-split">
+        <div class="stack" style="gap: var(--s2);">
+          <h2 class="h3">Paying your dues</h2>
+          <p class="muted" style="max-width: 34em;">Dues are $100 a year for every phase, payable by PayPal, Venmo or post. You do not need a form to pay online.</p>
         </div>
-        <div class="doc-list">
-          <article class="doc">
-            <div class="doc__name"><span class="mono">DUE&mdash;26</span><h3 class="doc__title">Annual Dues Payment Form 2026</h3></div>
-            <span class="doc__meta">101 KB</span>
-            <a class="btn btn--sm" href="https://woodsideranch.net/wp-content/uploads/2025/11/Annual-Dues-Payment-form2026.pdf" rel="noopener">Download PDF</a>
-          </article>
+        <div class="stack" style="gap: var(--s2); align-items: flex-start;">
+          <a class="btn btn--primary" href="pay-dues.html">Go to payment options</a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="panel bg-forest on-dark" style="padding: var(--s4);">
-        <p class="mono lime-text">Prefer not to post a cheque?</p>
-        <h2 class="sub" style="margin-top: var(--s2);">Pay online instead</h2>
-        <p class="muted" style="margin-top: var(--s2); font-weight: 300; font-size: var(--t-sm);">PayPal and Venmo both go to <span class="mono" style="color: var(--snow);">@WoodsideRanchPayment</span>. Put your address in the notes, and choose friends-and-family if you can.</p>
-        <p style="margin-top: var(--s3);"><a class="btn btn--lime btn--sm" href="index.html#dues">Payment options</a></p>
+  <p class="container doc-empty" data-doc-empty hidden>No documents in this category yet.</p>
+
+  <!-- ===================== GAPS ===================== -->
+  <section class="section container" style="padding-top: 0;">
+    <div class="panel bg-forest on-dark">
+      <div class="panel-split">
+        <div class="stack" style="gap: var(--s3);">
+          <p class="mono lime-text">What is missing</p>
+          <h2 class="h1">Some records are not here yet.</h2>
+          <p class="muted" style="max-width: 32em;">Minutes for 2020 and for 2022 through 2026 have not been posted, and neither have board meeting minutes, budgets or treasurer&rsquo;s reports. We would rather say so plainly than leave empty headings.</p>
+        </div>
+        <div class="stack" style="gap: var(--s2);">
+          <div class="card card--on-dark">
+            <span class="mono card__code">Requesting a record</span>
+            <span class="sub">Owners are entitled to the association&rsquo;s records</span>
+            <p>Ask the secretary and it gets posted here for everyone, rather than sent to one person privately.</p>
+            <p style="margin-top: var(--s2);"><a class="btn btn--lime btn--sm" href="mailto:board@woodsideranch.net">Request a document</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -188,30 +226,31 @@
   <div class="container footer__inner">
     <div class="stack" style="gap: var(--s2);">
       <svg viewBox="0 0 480 140" width="76" style="color: var(--snow);" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
-      <p style="color: var(--snow); font-weight: 300; font-size: var(--t-sm); line-height: 1.6;">
+      <p style="color: var(--snow); font-size: var(--t-sm); line-height: 1.6;">
         Woodside Ranch Homeowners Association<br>61141 S. Highway 97 #616<br>Bend, OR 97702
       </p>
       <p><a href="mailto:board@woodsideranch.net">board@woodsideranch.net</a></p>
     </div>
     <nav aria-labelledby="f-assoc">
-      <h2 class="mono" id="f-assoc">Association</h2>
+      <h2 id="f-assoc">Association</h2>
       <ul style="margin-top: var(--s2);">
         <li><a href="association.html#board">Board &amp; committees</a></li>
         <li><a href="documents.html#ccrs">CC&amp;Rs</a></li>
         <li><a href="documents.html#minutes">Minutes &amp; reports</a></li>
-        <li><a href="index.html#dues">Pay dues</a></li>
+        <li><a href="pay-dues.html">Pay dues</a></li>
       </ul>
     </nav>
     <nav aria-labelledby="f-hood">
-      <h2 class="mono" id="f-hood">Neighborhood</h2>
+      <h2 id="f-hood">Neighborhood</h2>
       <ul style="margin-top: var(--s2);">
+        <li><a href="calendar.html">Calendar</a></li>
         <li><a href="caldera-ranch.html">Caldera Ranch</a></li>
-        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScKza3wHTd480idv_B-S4RJlWp1Wq-uszUS447Sayzmmhx9Ww/viewform" rel="noopener">Email list</a></li>
+        <li><a href="contact.html">Contact</a></li>
         <li><a href="https://oldfarmbend.com/" rel="noopener">Old Farm District NA</a></li>
       </ul>
     </nav>
     <nav aria-labelledby="f-fire">
-      <h2 class="mono" id="f-fire">Fire</h2>
+      <h2 id="f-fire">Fire</h2>
       <ul style="margin-top: var(--s2);">
         <li><a href="fire-safety.html#alerts">Notifications &amp; alerts</a></li>
         <li><a href="fire-safety.html#burn">Burn status</a></li>
@@ -221,7 +260,7 @@
   </div>
   <div class="container footer__legal">
     <span class="mono">Not-for-profit 501(c)(4) &middot; operated by residents</span>
-    <span class="mono">Documents served from woodsideranch.net</span>
+    <span class="mono">Board as of 31 May 2026</span>
   </div>
 </footer>
 

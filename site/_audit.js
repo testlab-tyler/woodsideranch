@@ -18,9 +18,13 @@ window.__audit = function () {
     }
     return 'rgb(252,252,247)';
   };
-  var bad = [];
+  var bad = [], skipped = 0;
   document.querySelectorAll('a,p,h1,h2,h3,span,button,li,time,strong').forEach(function (el) {
     if (!el.textContent.trim()) return;
+    /* A transparent header sits over a photograph, so there is no opaque
+       surface to compare against and walking up finds the page ground —
+       a false failure. Those are measured against the image itself. */
+    if (el.closest('.header--over:not(.is-past)')) { skipped++; return; }
     var ownText = Array.prototype.some.call(el.childNodes, function (n) {
       return n.nodeType === 3 && n.textContent.trim();
     });
@@ -41,5 +45,5 @@ window.__audit = function () {
       ratio: +ratio.toFixed(2), need: need
     });
   });
-  return { page: location.pathname, failures: bad.length, items: bad.slice(0, 10) };
+  return { page: location.pathname, failures: bad.length, skippedOverImage: skipped, items: bad.slice(0, 10) };
 };

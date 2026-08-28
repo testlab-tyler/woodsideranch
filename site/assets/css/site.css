@@ -1,26 +1,27 @@
 /* ==========================================================================
    Woodside Ranch HOA
-   Design system: "Seed" — styles.refero.design/style/cd723d5a-e7ea-4e4c-a3bb-6cf56e05057a
-   Hard rules: no shadows, no elevation, no gradients, never pure white,
+   Structure from the "Seed" system — styles.refero.design/style/cd723d5a…
+   Hard rules kept: no shadows, no elevation, no gradients, never pure white,
    no heading heavier than 500, pills at 1000px.
+   Type is deliberately ours: Averia Serif Libre carries the headlines.
    ========================================================================== */
 
 :root {
   --forest:     #1c3a13;
   --forest-deep:#142b0e;
+  --forest-soft:#2a5220;
   --lime:       #d3fa99;
   --sage:       #757c5d;
   --olive:      #9f995b;
-  --eucalyptus: #698e79;
-  --label:      #5f6549;   /* darkened sage - 5.1:1 on stone, 5.7:1 on snow at 12px */
+  --label:      #5f6549;   /* 5.1:1 on stone, 5.7:1 on snow at 12px */
 
   --pewter: #666666;
   --ash:    #b3b3b3;
   --glass:  #c4c7c4;
   --stone:  #eeeee9;
   --snow:   #fcfcf7;
+  --ember:  #b4531f;       /* fire only — never decorative */
 
-  --t-display: 3rem;
   --t-h1:   2.5rem;
   --t-h2:   2.25rem;
   --t-h3:   2rem;
@@ -31,7 +32,8 @@
   --t-xs:   0.875rem;
   --t-mono: 0.75rem;
 
-  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --display: "Averia Serif Libre", Georgia, "Times New Roman", serif;
+  --sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --r-input: 8px;
@@ -60,30 +62,31 @@ body {
   font-family: var(--sans);
   font-size: var(--t-body);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
+body.is-locked { overflow: hidden; }
 
 img, svg { display: block; max-width: 100%; }
-h1, h2, h3, h4 { margin: 0; text-wrap: balance; font-weight: 350; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; font-family: var(--display); font-weight: 400; }
 p { margin: 0; }
 ul { margin: 0; padding: 0; list-style: none; }
 
 a { color: var(--forest); text-underline-offset: 4px; }
-a:hover { color: var(--sage); }
+a:hover { color: var(--forest-soft); }
 :focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; border-radius: 4px; }
-.on-dark :focus-visible { outline-color: var(--lime); }
+.on-dark :focus-visible, .nav :focus-visible { outline-color: var(--lime); }
 
-.display { font-size: clamp(2.5rem, 5.2vw, 4rem); font-weight: 300; line-height: 1.04; letter-spacing: -0.03em; }
-.h1  { font-size: clamp(1.875rem, 3.6vw, var(--t-h1)); font-weight: 350; line-height: 1.1; letter-spacing: -0.02em; }
-.h2  { font-size: clamp(1.625rem, 3vw, var(--t-h2)); font-weight: 300; line-height: 1.12; letter-spacing: -0.015em; }
-.h3  { font-size: clamp(1.375rem, 2.4vw, var(--t-h3)); font-weight: 300; line-height: 1.2; letter-spacing: -0.015em; }
-.sub { font-size: var(--t-sub); font-weight: 350; line-height: 1.22; letter-spacing: -0.015em; }
-.lede { font-size: var(--t-lg); font-weight: 300; line-height: 1.45; }
+.display { font-family: var(--display); font-size: clamp(2.25rem, 4.4vw, 3.5rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; }
+.h1  { font-family: var(--display); font-size: clamp(1.75rem, 3.4vw, var(--t-h1)); font-weight: 300; line-height: 1.12; letter-spacing: -0.015em; }
+.h2  { font-family: var(--display); font-size: clamp(1.5rem, 2.9vw, var(--t-h2)); font-weight: 300; line-height: 1.14; letter-spacing: -0.012em; }
+.h3  { font-family: var(--display); font-size: clamp(1.3rem, 2.3vw, var(--t-h3)); font-weight: 400; line-height: 1.2; }
+.sub { font-family: var(--display); font-size: var(--t-sub); font-weight: 400; line-height: 1.25; }
+.lede { font-size: var(--t-lg); font-weight: 400; line-height: 1.5; }
 
 .mono {
   font-family: var(--mono); font-size: var(--t-mono); font-weight: 400;
-  letter-spacing: 0.015em; text-transform: uppercase;
+  letter-spacing: 0.05em; text-transform: uppercase;
 }
 .muted { color: var(--pewter); }
 .on-dark { color: var(--snow); }
@@ -99,7 +102,6 @@ a:hover { color: var(--sage); }
 .row { display: flex; align-items: center; }
 .wrap { flex-wrap: wrap; }
 
-/* Section curves — the light page rides up over dark, and dark slabs curve out */
 .curve-b { border-radius: 0 0 var(--r-lg) var(--r-lg); }
 .curve-t { border-radius: var(--r-lg) var(--r-lg) 0 0; }
 .bg-forest { background: var(--forest); }
@@ -114,31 +116,24 @@ a:hover { color: var(--sage); }
 }
 .skip-link:focus { top: var(--s2); color: var(--snow); }
 
+/* ---------- Page header ----------
+   Headline and lede share one measure so their right edges agree. */
+.page-head { display: flex; flex-direction: column; gap: var(--s3); max-width: 46rem; }
+.page-head .lede { max-width: 46rem; }
+
 /* ---------- Announcement bar ---------- */
 .announce {
   background: var(--lime); color: var(--forest);
   text-align: center; padding: 12px var(--gutter);
   font-size: var(--t-sm); font-weight: 500;
-  position: relative; z-index: 60;
+  position: relative; z-index: 70;
 }
 .announce a { color: var(--forest); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
 .announce a:hover { color: var(--forest-deep); text-decoration: underline; }
 
-/* ---------- Header ----------
-   Default: dark type on the Snow White page.
-   .header--over: transparent, Snow White type, riding on top of a dark hero
-   image. Measured against hero-river.jpg, the nav strip fails AA on 0.3% of
-   pixels, so no scrim or glass bar is needed. */
-.header {
-  position: sticky; top: 0; z-index: 50;
-  background: var(--snow);
-  color: var(--forest);
-}
+/* ---------- Header ---------- */
+.header { position: sticky; top: 0; z-index: 60; background: var(--snow); color: var(--forest); }
 .header--over { background: transparent; color: var(--snow); transition: background-color .2s ease, color .2s ease; }
-
-/* Once the header leaves the hero image it has to stop being white-on-white.
-   Frosted Snow White — the system's documented translucent surface — used
-   here as a scroll state rather than as a panel over the photograph. */
 .header--over.is-past {
   background: rgba(252, 252, 247, 0.82);
   backdrop-filter: blur(20px) saturate(1.4);
@@ -148,19 +143,31 @@ a:hover { color: var(--sage); }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .header--over.is-past { background: var(--snow); }
 }
-.header--over.is-past .btn--lime { background: var(--forest); color: var(--snow); }
 .header__inner {
   display: flex; align-items: center; justify-content: space-between; gap: var(--s4);
   min-height: var(--header-h); position: relative;
 }
 .brand { display: flex; align-items: center; gap: var(--s2); text-decoration: none; color: inherit; }
 .brand svg { width: 74px; height: auto; color: currentColor; }
-.brand__name { font-size: var(--t-lg); font-weight: 400; letter-spacing: -0.01em; white-space: nowrap; }
+.brand__name { font-family: var(--display); font-size: var(--t-lg); font-weight: 400; white-space: nowrap; }
 
-.nav { display: flex; align-items: center; gap: var(--s4); }
+.nav { display: flex; align-items: center; gap: var(--s3); }
 .nav > a { font-size: var(--t-sm); font-weight: 400; text-decoration: none; color: inherit; white-space: nowrap; }
 .nav > a:hover { opacity: .68; }
-.nav > a[aria-current="page"] { font-weight: 500; }
+.nav > a[aria-current="page"] { font-weight: 600; }
+.nav__close { display: none; }
+
+/* Fire sits first and carries a mark — it is the one link that matters at 2am.
+   Ember is reserved for it and used nowhere else on the site. */
+.nav__fire {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid currentColor; border-radius: var(--r-pill);
+  padding: 8px 16px; margin-right: var(--s1);
+}
+.nav__fire svg { flex-shrink: 0; }
+.header:not(.header--over) .nav__fire,
+.header--over.is-past .nav__fire { color: var(--ember); border-color: var(--ember); }
+.nav__fire:hover { opacity: 1; background: var(--ember); color: var(--snow); border-color: var(--ember); }
 
 .nav-toggle {
   display: none; align-items: center; gap: var(--s1);
@@ -170,15 +177,13 @@ a:hover { color: var(--sage); }
   font: inherit; font-size: var(--t-sm); font-weight: 500; cursor: pointer;
 }
 
-/* ---------- Buttons ----------
-   Every variant is written .btn.btn--x so it outranks the contextual colour
-   rules (.nav > a, .on-dark a). Those were silently repainting button text
-   to match its own background — invisible labels. */
+/* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--s1);
-  border-radius: var(--r-pill); padding: 15px 30px; min-height: 52px;
+  border-radius: var(--r-pill); padding: 15px 28px; min-height: 52px;
   font-size: var(--t-sm); font-weight: 500; line-height: 1;
   text-decoration: none; border: 1px solid transparent; cursor: pointer;
+  white-space: nowrap;                      /* labels never wrap to two lines */
   transition: background-color .15s ease, color .15s ease, border-color .15s ease;
 }
 .btn.btn--primary { background: var(--forest); color: var(--snow); }
@@ -188,10 +193,9 @@ a:hover { color: var(--sage); }
 .btn.btn--outline { border-color: var(--forest); color: var(--forest); background: transparent; }
 .btn.btn--outline:hover { background: var(--forest); color: var(--snow); }
 .btn.btn--ghost-dark { border-color: var(--sage); color: var(--snow); background: transparent; }
-.btn.btn--ghost-dark:hover { background: var(--sage); color: var(--snow); }
-.btn--sm { min-height: 44px; padding: 11px 22px; }
+.btn.btn--ghost-dark:hover { background: var(--snow); color: var(--forest); border-color: var(--snow); }
+.btn--sm { min-height: 44px; padding: 11px 20px; }
 
-/* text link with arrow — Seed's secondary action */
 .link-arrow {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: var(--t-sm); font-weight: 500; text-decoration: none;
@@ -206,39 +210,29 @@ a:hover { color: var(--sage); }
   border-radius: var(--r-pill); padding: 5px 14px;
   font-size: var(--t-xs); font-weight: 500; line-height: 1.3; white-space: nowrap;
 }
-/* Olive Gold is 2.5:1 on stone — too light to carry 14px text. The badge keeps
-   its outlined form but takes the label colour. */
 .badge--outline { background: transparent; border: 1px solid var(--label); color: var(--label); }
-.badge--dark { background: var(--forest); color: var(--lime); }
 
-/* ---------- Hero ----------
-   Full-bleed photograph, no scrim, no panel. Type sits directly on the image
-   the way the reference does — the copy column is held to 560px because that
-   is where the photograph stays dark and the river has not yet entered. */
+/* ---------- Hero ---------- */
 .hero {
   position: relative;
   margin-top: calc(-1 * var(--header-h));
   background: var(--forest);
   border-radius: 0 0 var(--r-lg) var(--r-lg);
-  overflow: hidden;
-  isolation: isolate;
+  overflow: hidden; isolation: isolate;
   min-height: clamp(560px, 78vh, 820px);
-  display: flex;
-  align-items: flex-end;
+  display: flex; align-items: flex-end;
 }
+.hero--flat { min-height: clamp(400px, 50vh, 540px); background: var(--forest); }
 .hero__media { position: absolute; inset: 0; z-index: -1; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; }
-
 .hero__inner { padding-block: clamp(120px, 14vw, 180px) clamp(56px, 7vw, 88px); width: 100%; }
 .hero__copy { max-width: 560px; color: var(--snow); }
 .hero__copy .display { margin-top: var(--s3); }
-.hero__lede { margin-top: var(--s3); color: rgba(252, 252, 247, 0.82); max-width: 26em; }
+.hero__lede { margin-top: var(--s3); color: rgba(252, 252, 247, 0.85); max-width: 26em; }
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); margin-top: var(--s5); }
 .hero__eyebrow { color: var(--lime); }
 
-/* ---------- Section heads ----------
-   Headline left, supporting copy in its own column right — the reference's
-   pattern. Grid, not space-between, so a short line does not float off alone. */
+/* ---------- Section heads ---------- */
 .section-head {
   display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: clamp(24px, 5vw, 72px); align-items: start;
@@ -259,71 +253,131 @@ a:hover { color: var(--sage); }
   display: flex; flex-direction: column; gap: var(--s2);
   background: var(--stone); border-radius: var(--r-card);
   padding: clamp(24px, 2.4vw, 32px); text-decoration: none; color: var(--forest);
-  transition: background-color .15s ease;
+  transition: background-color .15s ease, border-color .15s ease;
 }
-/* the arrow sits at the foot of the card, pushed down by the copy above it */
+a.card:hover { background: #e4e6dd; color: var(--forest); }
+.card__top { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s2); }
+.card__code { color: var(--label); }
+.card p { font-size: var(--t-sm); color: var(--pewter); line-height: 1.55; }
+.card--tall { min-height: 190px; }
 .card__go { margin-top: auto; padding-top: var(--s2); color: var(--label); display: block; }
 .card__go svg { transition: transform .15s ease; }
 a.card:hover .card__go svg { transform: translateX(4px); }
-.card--dark .card__go { color: var(--lime); }
-a.card:hover { background: #e5e6df; color: var(--forest); }
-.card__top { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s2); }
-.card__code { color: var(--label); }
-.card p { font-size: var(--t-sm); color: var(--pewter); line-height: 1.5; }
-.card--tall { min-height: 190px; }
+.card__icon { width: 36px; height: 36px; color: var(--label); }
+
 .card--dark { background: var(--forest); color: var(--snow); }
 a.card--dark:hover { background: var(--forest-deep); color: var(--snow); }
-.card--dark .card__code { color: var(--lime); }
+.card--dark .card__code, .card--dark .card__go, .card--dark .card__icon { color: var(--lime); }
 .card--dark p { color: var(--glass); }
+
+/* Cards sitting ON a dark panel. Hover lifts the translucent fill rather than
+   flipping to a light background — the previous inline-styled version kept
+   Snow White text and went white-on-white on hover. */
+.card--on-dark {
+  background: rgba(252, 252, 247, 0.07);
+  border: 1px solid rgba(252, 252, 247, 0.22);
+  color: var(--snow);
+}
+a.card--on-dark:hover {
+  background: rgba(252, 252, 247, 0.16);
+  border-color: rgba(252, 252, 247, 0.5);
+  color: var(--snow);
+}
+.card--on-dark p { color: var(--glass); }
+.card--on-dark .card__code, .card--on-dark .card__go, .card--on-dark .card__icon { color: var(--lime); }
+
 .card--outline { background: transparent; border: 1px solid var(--stone); }
 a.card--outline:hover { background: var(--stone); }
 
-/* ---------- Dark panel ---------- */
+/* ---------- Panels ---------- */
 .panel { border-radius: var(--r-lg); padding: clamp(32px, 5vw, var(--s8)); }
 .panel-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(32px, 5vw, var(--s8)); align-items: start; }
+
+/* ---------- Calendar ---------- */
+.cal { display: flex; flex-direction: column; gap: var(--s1); }
+.cal-item {
+  display: grid; grid-template-columns: 92px minmax(0, 1fr) auto;
+  gap: var(--s3); align-items: center;
+  background: var(--stone); border-radius: var(--r-card);
+  padding: var(--s3); text-decoration: none; color: var(--forest);
+  transition: background-color .15s ease;
+}
+a.cal-item:hover { background: #e4e6dd; color: var(--forest); }
+.cal-date {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--snow); border-radius: var(--r-input); padding: 10px 8px; min-width: 92px;
+}
+.cal-date__d { font-family: var(--display); font-size: 1.75rem; font-weight: 400; line-height: 1; }
+.cal-date__m { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--label); margin-top: 4px; }
+.cal-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cal-body .sub { font-size: var(--t-lg); }
+.cal-body p { font-size: var(--t-sm); color: var(--pewter); }
+.cal-item--past { opacity: .6; }
+.cal-item--past .cal-date { background: transparent; border: 1px solid var(--ash); }
+@media (max-width: 640px) {
+  .cal-item { grid-template-columns: 72px minmax(0, 1fr); }
+  .cal-item > .badge { grid-column: 2; justify-self: start; }
+  .cal-date { min-width: 72px; }
+}
 
 /* ---------- Notices ---------- */
 .notice { display: flex; gap: var(--s3); padding-block: var(--s3); border-top: 1px solid rgba(252,252,247,.22); }
 .notice:last-of-type { border-bottom: 1px solid rgba(252,252,247,.22); }
 .notice__date { color: var(--glass); white-space: nowrap; padding-top: 5px; font-size: var(--t-xs); }
 .notice__body { display: flex; flex-direction: column; gap: 4px; }
-.notice__title { font-size: var(--t-lg); font-weight: 350; letter-spacing: -0.01em; line-height: 1.25; }
-.notice p { font-size: var(--t-sm); font-weight: 300; color: var(--glass); }
-.notice--light { border-top-color: var(--stone); }
-.notice--light:last-of-type { border-bottom-color: var(--stone); }
-.notice--light .notice__date { color: var(--label); }
-.notice--light p { color: var(--pewter); }
+.notice__title { font-family: var(--display); font-size: var(--t-lg); font-weight: 400; line-height: 1.3; }
+.notice p { font-size: var(--t-sm); color: var(--glass); }
 
-/* ---------- Document rows ---------- */
+/* ---------- Documents ---------- */
 .doc-filters { display: flex; flex-wrap: wrap; gap: var(--s1); }
 .chip {
   border-radius: var(--r-pill); padding: 11px 22px; min-height: 44px;
-  display: inline-flex; align-items: center;
-  font-size: var(--t-sm); font-weight: 400; text-decoration: none;
-  border: 1px solid var(--ash); color: var(--forest);
+  display: inline-flex; align-items: center; white-space: nowrap;
+  font: inherit; font-size: var(--t-sm); font-weight: 400; text-decoration: none;
+  border: 1px solid var(--ash); color: var(--forest); background: transparent; cursor: pointer;
 }
-.chip.is-active { background: var(--forest); color: var(--snow); border-color: var(--forest); font-weight: 500; }
+.chip:hover { border-color: var(--forest); }
+.chip[aria-pressed="true"] { background: var(--forest); color: var(--snow); border-color: var(--forest); font-weight: 500; }
 
 .doc-list { display: flex; flex-direction: column; gap: var(--s1); }
 .doc {
-  display: grid; grid-template-columns: minmax(0, 1fr) 140px 130px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
   gap: var(--s3); align-items: center;
-  background: var(--stone); border-radius: var(--r-card); padding: 20px var(--s3);
+  background: var(--stone); border-radius: var(--r-card);
+  padding: 20px var(--s3);
+  text-decoration: none; color: var(--forest);
+  transition: background-color .15s ease;
 }
+a.doc:hover { background: #e4e6dd; color: var(--forest); }
+.doc[hidden] { display: none; }
 .doc__name { display: flex; align-items: center; gap: var(--s2); min-width: 0; flex-wrap: wrap; }
 .doc__name .mono { color: var(--label); flex-shrink: 0; }
 .doc__title { font-size: var(--t-body); font-weight: 400; }
-.doc__meta { font-family: var(--mono); font-size: var(--t-xs); font-weight: 300; color: var(--pewter); letter-spacing: .015em; }
-.doc .btn { background: var(--snow); color: var(--forest); justify-self: start; }
-.doc .btn:hover { background: var(--forest); color: var(--snow); }
+/* status and size read as one line, never stacked */
+.doc__meta {
+  font-family: var(--mono); font-size: var(--t-xs); font-weight: 400;
+  color: var(--pewter); letter-spacing: .015em; white-space: nowrap;
+}
+.doc__action {
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  background: var(--snow); border-radius: var(--r-pill);
+  padding: 10px 18px; min-height: 44px;
+  font-size: var(--t-sm); font-weight: 500; color: var(--forest);
+}
+a.doc:hover .doc__action { background: var(--forest); color: var(--snow); }
+.doc-empty { padding: var(--s5) 0; color: var(--pewter); }
+@media (max-width: 780px) {
+  .doc { grid-template-columns: minmax(0, 1fr) auto; row-gap: var(--s2); }
+  .doc__name { grid-column: 1 / -1; }
+}
 
 /* ---------- People ---------- */
 .person { display: flex; flex-direction: column; gap: 6px; padding: var(--s3); border-radius: var(--r-card); background: var(--stone); }
-.person__name { font-size: var(--t-lg); font-weight: 400; letter-spacing: -0.01em; }
+.person__name { font-family: var(--display); font-size: var(--t-lg); font-weight: 400; }
 .person .mono { color: var(--label); }
 .member-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s1); }
-.member { background: var(--snow); border-radius: var(--r-pill); padding: 5px 14px; font-size: var(--t-xs); font-weight: 400; }
-.card--dark .member { background: rgba(252,252,247,.12); color: var(--snow); }
+.member { background: var(--snow); border-radius: var(--r-pill); padding: 5px 14px; font-size: var(--t-xs); }
+.card--dark .member, .card--on-dark .member { background: rgba(252,252,247,.14); color: var(--snow); }
 
 /* ---------- Timeline ---------- */
 .timeline { display: flex; flex-direction: column; }
@@ -331,57 +385,64 @@ a.card--outline:hover { background: var(--stone); }
 .tl:last-child { border-bottom: 1px solid var(--stone); }
 .tl__when { color: var(--label); padding-top: 4px; }
 .tl__what { display: flex; flex-direction: column; gap: 6px; }
-.tl__title { font-size: var(--t-lg); font-weight: 400; line-height: 1.3; }
+.tl__title { font-family: var(--display); font-size: var(--t-lg); font-weight: 400; line-height: 1.3; }
 .tl p { font-size: var(--t-sm); color: var(--pewter); }
 .tl__links { display: flex; flex-wrap: wrap; gap: var(--s1); margin-top: 6px; }
+@media (max-width: 780px) { .tl { grid-template-columns: 1fr; gap: var(--s1); } }
+
+/* ---------- Contact ---------- */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--s1); }
 
 /* ---------- Footer ---------- */
 .footer { background: var(--forest); color: var(--glass); border-radius: var(--r-lg) var(--r-lg) 0 0; margin-top: clamp(48px, 7vw, var(--s8)); }
 .footer__inner { display: grid; grid-template-columns: minmax(240px, 1.3fr) repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s5); padding-block: var(--s8) var(--s5); }
-.footer h2 { font-size: var(--t-mono); color: var(--glass); }
+.footer h2 { font-family: var(--mono); font-size: var(--t-mono); font-weight: 400; letter-spacing: .05em; text-transform: uppercase; color: var(--glass); }
 .footer ul { display: flex; flex-direction: column; gap: 12px; }
-.footer a { font-size: var(--t-sm); font-weight: 300; text-decoration: none; color: var(--glass); }
+.footer a { font-size: var(--t-sm); text-decoration: none; color: var(--glass); }
 .footer a:hover { color: var(--lime); }
 .footer__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--s2); padding-block: var(--s3); border-top: 1px solid rgba(252,252,247,.18); }
 .footer__legal .mono { color: var(--glass); }
 
-/* ---------- Responsive ---------- */
+/* ---------- Mobile navigation: full-screen overlay ---------- */
 @media (max-width: 940px) {
+  .nav-toggle { display: inline-flex; }
   .nav {
-    display: none;
-    position: absolute; left: 0; right: 0; top: calc(100% + 8px);
-    flex-direction: column; align-items: stretch; gap: 0;
-    background: rgba(252, 252, 247, 0.96);
-    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-    border-radius: var(--r-card); padding: var(--s1);
+    position: fixed; inset: 0; z-index: 80;
+    display: none; flex-direction: column; align-items: stretch; justify-content: flex-start;
+    gap: 0; padding: var(--s3) var(--gutter) var(--s8);
+    background: var(--forest); color: var(--snow);
+    overflow-y: auto;
   }
   .nav.is-open { display: flex; }
-  .nav > a { padding: 16px; min-height: 52px; display: flex; align-items: center; font-size: var(--t-body); }
-  .nav .btn { margin-top: var(--s1); }
-  .nav-toggle { display: inline-flex; }
-  .doc { grid-template-columns: minmax(0,1fr) auto; row-gap: var(--s2); }
-  .doc__name { grid-column: 1 / -1; }
-  .doc .btn { grid-column: 2; justify-self: end; }
-  .tl { grid-template-columns: 1fr; gap: var(--s1); }
+  .nav__close {
+    display: inline-flex; align-items: center; gap: var(--s1);
+    align-self: flex-end; margin-bottom: var(--s6);
+    background: transparent; color: var(--snow);
+    border: 1px solid rgba(252,252,247,.4); border-radius: var(--r-pill);
+    padding: 11px 18px; min-height: 46px;
+    font: inherit; font-size: var(--t-sm); font-weight: 500; cursor: pointer;
+  }
+  .nav > a {
+    color: var(--snow); font-family: var(--display); font-size: 1.6rem; font-weight: 400;
+    padding: var(--s3) 0; min-height: 64px; display: flex; align-items: center;
+    border-bottom: 1px solid rgba(252,252,247,.16); white-space: normal;
+  }
+  .nav > a:hover, .nav > a[aria-current="page"] { opacity: 1; color: var(--lime); }
+  .nav .nav__fire {
+    order: -1; margin: 0 0 var(--s3); border-radius: var(--r-card);
+    border: 1px solid var(--lime); color: var(--lime);
+    padding: var(--s3); font-size: 1.5rem; gap: var(--s2); min-height: 72px;
+  }
+  .nav .nav__fire:hover { background: var(--lime); color: var(--forest); }
+  .nav .btn { margin-top: var(--s4); align-self: flex-start; font-size: var(--t-body); }
 }
 
-@media (max-width: 560px) {
-  .hero__actions .btn { width: 100%; }
-  .section-head { align-items: flex-start; }
-}
+@media (max-width: 780px) { .hero__media img { object-position: 8% 50%; } }
+@media (max-width: 560px) { .hero__actions .btn { width: 100%; } }
 
 @media print {
   .header, .announce, .hero__media, .nav-toggle, .skip-link { display: none !important; }
   body { background: #fff; color: #000; font-size: 12pt; }
-  .glass-panel, .panel, .footer, .bg-forest { background: none !important; color: #000 !important; backdrop-filter: none !important; }
+  .panel, .footer, .bg-forest { background: none !important; color: #000 !important; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
-}
-
-/* Flat hero — utility pages that need the shape of a hero but no photograph. */
-.hero--flat { min-height: clamp(420px, 52vh, 560px); background: var(--forest); }
-
-/* Narrow viewports crop the hero to its centre — which is exactly where the
-   river is. Pull the framing left so the copy still sits on dark forest. */
-@media (max-width: 780px) {
-  .hero__media img { object-position: 8% 50%; }
 }

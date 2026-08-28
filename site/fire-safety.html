@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/img/longhorn.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..500&family=JetBrains+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300;400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
@@ -16,28 +16,38 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="announce">
-  <a href="#hardening">Free home hardening assessments by trained volunteer assessors
+  <a href="#hardening">Free home hardening assessments, walked with a trained neighbour
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
 
-<header class="header header--over">
+<header class="header">
   <div class="container header__inner">
     <a class="brand" href="index.html">
       <svg viewBox="0 0 480 140" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
       <span class="brand__name">Woodside Ranch</span>
     </a>
+
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       Menu
     </button>
+
     <nav class="nav" id="primary-nav" aria-label="Primary">
+      <button class="nav__close" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        Close
+      </button>
+      <a class="nav__fire" href="fire-safety.html" aria-current="page">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1.6 3.2.6 5.2-.8 6.9C9.6 11.9 8 13.6 8 16a4 4 0 0 0 8 0c0-1.6-.7-2.9-1.5-4"/></svg>
+        Fire safety
+      </a>
       <a href="association.html">Association</a>
       <a href="documents.html">Documents</a>
-      <a href="fire-safety.html" aria-current="page">Fire safety</a>
+      <a href="calendar.html">Calendar</a>
       <a href="caldera-ranch.html">Caldera Ranch</a>
-      <a href="index.html#contact">Contact</a>
-      <a class="btn btn--primary btn--sm" href="index.html#dues">Pay dues</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn--primary btn--sm" href="pay-dues.html">Pay dues</a>
     </nav>
   </div>
 </header>
@@ -67,25 +77,28 @@
         <p class="mono sage-text">Current fire and burn activity</p>
         <h2 class="h2">What is burning right now.</h2>
       </div>
+      <p class="muted">Both open in a new tab. Central Oregon Fire Info is the official publishing source for the region.</p>
     </div>
 
     <div class="grid grid--2">
-      <a class="card card--tall" href="https://centraloregonfire.org/" rel="noopener">
-        <div class="card__top">
-          <span class="mono card__code">Official source</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </div>
-        <span class="sub" style="margin-top: var(--s1);">Central Oregon Fire Info</span>
-        <p>The official publishing source for comprehensive fire, health and air quality information in Central Oregon. Current and planned prescribed burns, wildfires, and text alert sign-up.</p>
+      <a class="card card--tall" href="https://centraloregonfire.org/" target="_blank" rel="noopener">
+        <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2.5c1.9 3.7.7 6-.9 8C9.4 12.4 7.5 14.4 7.5 17a4.5 4.5 0 0 0 9 0c0-1.9-.8-3.4-1.8-4.7"/>
+          <path d="M12 21a2.4 2.4 0 0 0 2.4-2.4c0-1.4-1.3-2.3-2.4-4-1.1 1.7-2.4 2.6-2.4 4A2.4 2.4 0 0 0 12 21z"/>
+        </svg>
+        <span class="sub">Central Oregon Fire Info</span>
+        <p>The official source for fire, health and air quality information across Central Oregon. Prescribed burns, active wildfires, and text alert sign-up.</p>
+        <span class="card__go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
 
-      <a class="card card--tall" href="https://www.watchduty.org/" rel="noopener">
-        <div class="card__top">
-          <span class="mono card__code">Free app</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </div>
-        <span class="sub" style="margin-top: var(--s1);">Watch Duty</span>
-        <p>iOS and Android app giving a graphic display of fire locations, size and accompanying evacuation zones, run by a volunteer organisation that consolidates reports from multiple sources.</p>
+      <a class="card card--tall" href="https://www.watchduty.org/" target="_blank" rel="noopener">
+        <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0-6 6c0 3.6-1.2 5.1-2 6a1 1 0 0 0 .7 1.7h14.6A1 1 0 0 0 20 15c-.8-.9-2-2.4-2-6a6 6 0 0 0-6-6z"/>
+          <path d="M10 19.5a2.2 2.2 0 0 0 4 0"/>
+        </svg>
+        <span class="sub">Watch Duty</span>
+        <p>A free app giving a live map of fire locations, size and evacuation zones, run by a volunteer organisation that consolidates official reports.</p>
+        <span class="card__go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
     </div>
   </section>
@@ -97,26 +110,33 @@
         <div class="stack" style="gap: var(--s3);">
           <p class="mono lime-text">Notifications and alerts</p>
           <h2 class="h1">Emergencies happen with little or no notice.</h2>
-          <p class="muted" style="font-weight: 300; max-width: 32em;">Deschutes Alerts uses reverse-911 technology to send emergency notifications about threats to your safety. You can opt in to receive them by phone call, text message and email.</p>
-          <p><a class="btn btn--lime" href="https://www.deschutes.org/911/page/sign-deschutes-alerts" rel="noopener">Sign up for Deschutes Alerts</a></p>
+          <p class="muted" style="max-width: 32em;">Deschutes Alerts uses reverse-911 technology to send emergency notifications about threats to your safety. You can opt in to receive them by phone call, text message and email.</p>
+          <p><a class="btn btn--lime" href="https://www.deschutes.org/911/page/sign-deschutes-alerts" target="_blank" rel="noopener">Sign up for Deschutes Alerts</a></p>
         </div>
 
         <div class="stack" style="gap: var(--s1);">
-          <a class="card card--outline" href="https://www.watchduty.org/how-it-works/overview" rel="noopener" style="border-color: rgba(252,252,247,.24); color: var(--snow);">
-            <span class="mono lime-text">How it works</span>
-            <span class="sub">Watch Duty overview</span>
-            <p style="color: var(--glass);">See how the app works before you install it.</p>
+          <a class="card card--on-dark"
+             href="https://www.watchduty.org/"
+             data-app-ios="https://apps.apple.com/us/app/watch-duty-wildfire/id1574452924"
+             data-app-android="https://play.google.com/store/apps/details?id=com.watchduty.app"
+             target="_blank" rel="noopener">
+            <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/>
+              <path d="M10.5 5.5h3"/><path d="M11 18.5h2"/>
+            </svg>
+            <span class="sub" data-app-label>Get the Watch Duty app</span>
+            <p>Opens your device&rsquo;s app store where we can tell which one you are on, and the Watch Duty website otherwise.</p>
+            <span class="card__go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
           </a>
-          <a class="card card--outline" href="https://www.watchduty.org/" rel="noopener" style="border-color: rgba(252,252,247,.24); color: var(--snow);">
-            <span class="mono lime-text">Download</span>
-            <span class="sub">Get the app</span>
-            <p style="color: var(--glass);">Configure it to alert you for fire activity in a selected area.</p>
+
+          <a class="card card--on-dark" href="https://www.watchduty.org/how-it-works/overview" target="_blank" rel="noopener">
+            <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/><path d="M12 16.5v-5"/><path d="M12 8h.01"/>
+            </svg>
+            <span class="sub">How Watch Duty works</span>
+            <p>Worth two minutes before you install it.</p>
+            <span class="card__go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
           </a>
-          <div class="card card--outline" style="border-color: rgba(252,252,247,.24); color: var(--snow);">
-            <span class="mono lime-text">Emergency</span>
-            <span class="sub"><a href="tel:911" style="color: var(--snow); text-decoration: none;">911</a> &middot; <a href="tel:+15416936911" style="color: var(--snow); text-decoration: none;">541-693-6911</a></span>
-            <p style="color: var(--glass);">Immediate danger, then the Deschutes County Sheriff non-emergency line.</p>
-          </div>
         </div>
       </div>
     </div>
@@ -129,6 +149,7 @@
         <p class="mono sage-text">Protect your investment</p>
         <h2 class="h2">Home hardening assessments.</h2>
       </div>
+      <p class="muted">Free to Woodside Ranch owners, walked with neighbours who have been trained to do it.</p>
     </div>
 
     <div class="panel bg-stone">
@@ -136,23 +157,47 @@
         <div class="stack" style="gap: var(--s3);">
           <p class="lede" style="max-width: 34em;">Would you like a second set of eyes on how prepared your home is to survive a wildfire?</p>
           <p class="muted" style="max-width: 34em;">Trained volunteer assessors within the neighborhood will arrange to walk your property with you and give you suggestions, tips and insights into things you can do to harden your home&rsquo;s defenses.</p>
-          <p><a class="btn btn--primary" href="https://docs.google.com/forms/d/e/1FAIpQLScvlJK57DNSF4iKc3WjfiiFRsY2H9BIyoghKbFmlpgjbVjmgw/viewform" rel="noopener">Request an assessment</a></p>
+          <p><a class="btn btn--primary" href="https://docs.google.com/forms/d/e/1FAIpQLScvlJK57DNSF4iKc3WjfiiFRsY2H9BIyoghKbFmlpgjbVjmgw/viewform" target="_blank" rel="noopener">Request an assessment</a></p>
         </div>
 
         <div class="stack" style="gap: var(--s1);">
-          <div class="card" style="background: var(--snow);">
-            <span class="mono card__code">Who runs it</span>
+          <a class="card" style="background: var(--snow);" href="mailto:FireEducation@woodsideranch.net">
+            <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 10.5 12 4l9 6.5"/><path d="M5.5 12v7.5h13V12"/><path d="M14.5 19.5v-5h-5v5"/>
+            </svg>
             <span class="sub">Fire Education Committee</span>
-            <p>Lincoln Mayer, P.J. Johnson, Craig Clasby and Jim Anthony.</p>
-            <p style="margin-top: var(--s1);"><a class="link-arrow" href="mailto:FireEducation@woodsideranch.net">FireEducation@woodsideranch.net
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
-          </div>
-          <div class="card" style="background: var(--snow);">
-            <span class="mono card__code">Evacuation routes</span>
+            <p>Runs the assessments. Lincoln Mayer, P.J. Johnson, Craig Clasby and Jim Anthony.</p>
+            <span class="card__go">FireEducation@woodsideranch.net</span>
+          </a>
+          <a class="card" style="background: var(--snow);" href="mailto:FireSafety@woodsideranch.net">
+            <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3 5 6v5.5c0 4 3 7.5 7 9.5 4-2 7-5.5 7-9.5V6l-7-3z"/>
+            </svg>
             <span class="sub">Fire Safety Committee</span>
             <p>Reviews evacuation routes in the neighborhood and impacts beyond it. Ray Miao, Brian Firebaugh and Mark Marshall.</p>
-            <p style="margin-top: var(--s1);"><a class="link-arrow" href="mailto:FireSafety@woodsideranch.net">FireSafety@woodsideranch.net
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+            <span class="card__go">FireSafety@woodsideranch.net</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EMERGENCY ===================== -->
+  <section class="section container" style="padding-top: 0;">
+    <div class="panel bg-stone">
+      <div class="panel-split">
+        <div class="stack" style="gap: var(--s2);">
+          <h2 class="h3">In an emergency</h2>
+          <p class="muted" style="max-width: 34em;">If there is fire, injury or immediate danger, dial 911 from your phone. Nothing on this page is an emergency service, and the association cannot dispatch anyone.</p>
+        </div>
+        <div class="stack" style="gap: var(--s3);">
+          <div class="stack" style="gap: 4px;">
+            <p class="mono sage-text">Immediate danger</p>
+            <p class="h3">911</p>
+          </div>
+          <div class="stack" style="gap: 4px;">
+            <p class="mono sage-text">Deschutes County Sheriff &mdash; non-emergency</p>
+            <p class="h3">541-693-6911</p>
           </div>
         </div>
       </div>
@@ -165,30 +210,31 @@
   <div class="container footer__inner">
     <div class="stack" style="gap: var(--s2);">
       <svg viewBox="0 0 480 140" width="76" style="color: var(--snow);" aria-hidden="true"><path fill="currentColor" d="M16,45 C90,31 165,23 240,19.5 C315,23 390,31 464,45 C396,45.2 330,46.2 270,47.5 C269,64 266,82 261,97 C257,108 253,115 249,119 C243,120.2 237,120.2 231,119 C227,115 223,108 219,97 C214,82 211,64 210,47.5 C150,46.2 84,45.2 16,45 Z"/></svg>
-      <p style="color: var(--snow); font-weight: 300; font-size: var(--t-sm); line-height: 1.6;">
+      <p style="color: var(--snow); font-size: var(--t-sm); line-height: 1.6;">
         Woodside Ranch Homeowners Association<br>61141 S. Highway 97 #616<br>Bend, OR 97702
       </p>
       <p><a href="mailto:board@woodsideranch.net">board@woodsideranch.net</a></p>
     </div>
     <nav aria-labelledby="f-assoc">
-      <h2 class="mono" id="f-assoc">Association</h2>
+      <h2 id="f-assoc">Association</h2>
       <ul style="margin-top: var(--s2);">
         <li><a href="association.html#board">Board &amp; committees</a></li>
         <li><a href="documents.html#ccrs">CC&amp;Rs</a></li>
         <li><a href="documents.html#minutes">Minutes &amp; reports</a></li>
-        <li><a href="index.html#dues">Pay dues</a></li>
+        <li><a href="pay-dues.html">Pay dues</a></li>
       </ul>
     </nav>
     <nav aria-labelledby="f-hood">
-      <h2 class="mono" id="f-hood">Neighborhood</h2>
+      <h2 id="f-hood">Neighborhood</h2>
       <ul style="margin-top: var(--s2);">
+        <li><a href="calendar.html">Calendar</a></li>
         <li><a href="caldera-ranch.html">Caldera Ranch</a></li>
-        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScKza3wHTd480idv_B-S4RJlWp1Wq-uszUS447Sayzmmhx9Ww/viewform" rel="noopener">Email list</a></li>
+        <li><a href="contact.html">Contact</a></li>
         <li><a href="https://oldfarmbend.com/" rel="noopener">Old Farm District NA</a></li>
       </ul>
     </nav>
     <nav aria-labelledby="f-fire">
-      <h2 class="mono" id="f-fire">Fire</h2>
+      <h2 id="f-fire">Fire</h2>
       <ul style="margin-top: var(--s2);">
         <li><a href="fire-safety.html#alerts">Notifications &amp; alerts</a></li>
         <li><a href="fire-safety.html#burn">Burn status</a></li>
@@ -198,7 +244,7 @@
   </div>
   <div class="container footer__legal">
     <span class="mono">Not-for-profit 501(c)(4) &middot; operated by residents</span>
-    <span class="mono">External links open the source site</span>
+    <span class="mono">Board as of 31 May 2026</span>
   </div>
 </footer>
 
